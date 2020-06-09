@@ -1,0 +1,4 @@
+.env
+.babelrc/
+.cache/
+/node_modules
