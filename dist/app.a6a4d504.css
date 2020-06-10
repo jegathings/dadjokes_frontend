@@ -1,6 +1,59 @@
-h1 {
-    color: orange;
+body{
+    background-color: rgb(192, 196, 252);
 }
+hr{
+    border: 1px solid black;
+}
+.header-main {
+    color: rgb(255, 255, 255);
+    text-shadow: 2px 2px 2px #000;
+    text-align: center;
+}
+
+.diagonal-box {
+    position: relative;
+    background-image: linear-gradient(15deg, #6303B1, #ff0099);
+    transform: skewY(-7deg);
+}
+
+.diagonal-box:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(10deg, #654ea3, #eaafc8);
+    transform: skewY(-8deg);
+}
+
+.diagonal-box2 {
+    position: relative;
+    background-image: linear-gradient(-25deg, #6303B1, #ff0099);
+    transform: skewY(12deg);
+}
+
+.diagonal-box2:before {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(-15deg, #654ea3, #eaafc8);
+    transform: skewY(2deg);
+}
+
+
+.main {
+    max-width: 50em;
+    margin: 0 auto;
+    transform: skewY(1eg);
+}
+
+.dad_joke_row{
+    display:flex;
+    flex-direction: row;
+}
+
 
 
 /*# sourceMappingURL=/app.a6a4d504.css.map */
