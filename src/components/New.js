@@ -29,6 +29,12 @@ export default (props) => {
                     resetDadJokeData(resetForm);
                 }}
                 >Submit</button>
+            <button
+                onClick={() =>{
+                    props.handleRandomJoke();
+                    resetDadJokeData(resetForm);
+                }}
+                >Random</button>
         </div>
         </>
     );

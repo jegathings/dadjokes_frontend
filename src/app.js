@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import ReactDOM from 'react-dom';
 import New from './components/New.js';
 import Edit from './components/Edit.js';
@@ -32,7 +33,18 @@ const App = (props) => {
         });
         getInfo();
     }
-    
+
+    const handleRandomJoke = () => {
+        axios
+        .get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
+          headers: { Accept: 'application/json' }
+        })
+        .then(response => {
+            handleCreate({joke: response.data.setup + " " + response.data.punchline});
+            getInfo();
+        });
+      }
+
     const handleEdit = async (data) => {
         const response = await fetch(
             `${baseURL}/update/${data._id}`,
@@ -75,7 +87,7 @@ const App = (props) => {
             && 
             <div>
                 <h3>Add A Dad joke</h3>
-                <New newData={blank} handleSubmit = {handleCreate}/>
+                <New newData={blank} handleSubmit = {handleCreate} handleRandomJoke = {handleRandomJoke}/>
             </div>
             }
             {/**
