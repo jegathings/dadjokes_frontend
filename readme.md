@@ -1,10 +1,10 @@
-# Alex Merced's React/Parcel Template
+# Dad Joke Frontend
 
 ## Directions
 
-1. Clone this repo
+1. Copy clone url
 
-2. git remote rm origin
+2. git clone git@github.com:jegathings/dadjokes_frontend.git
 
 3. npm install
 
