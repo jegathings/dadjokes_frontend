@@ -11,7 +11,7 @@ const App = (props) => {
     const blank = {id:'', joke: ''}
     const [edit, setEdit] = React.useState(blank);
 
-    const baseURL = 'http://localhost:3000/dadjokes';
+    const baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
 
     const getInfo = async() =>{
         const response = await fetch(`${baseURL}/index`);
@@ -79,10 +79,27 @@ const App = (props) => {
 
     return (
         <>
+            {/**
+             * This toggles to either show the create functionality or show the edit functionality
+             */}
+            {
+            !showEditOrCreate 
+            && 
             <div>
                 <h3>Add A Dad joke</h3>
                 <New newData={blank} handleSubmit = {handleCreate} handleRandomJoke = {handleRandomJoke}/>
             </div>
+            }
+            {/**
+             * This toggles to either show the create functionality or show the edit functionality
+             */}
+            {
+            showEditOrCreate 
+            && 
+            <div>
+                <Edit editData={edit} handleSubmit={handleEdit} resetForm={blank}/>
+            </div>
+            }
             <hr/>
             {
                 dadJokes ? 
@@ -90,14 +107,19 @@ const App = (props) => {
                     return(
                         <div key={dadJoke._id}>
                         	<h1>{dadJoke.joke}</h1>
-                            <div className="dad_joke_row">
-                                <Edit editData={dadJoke} handleSubmit={handleEdit}/>
-                                <button
+                            <button
                                     onClick={() =>{
-                                        handleDelete(dadJoke);
+                                        handleSelect(dadJoke);
+                                        setShowEditOrCreate(!showEditOrCreate);
                                     }}
-                                    >Delete</button>
-                            </div>
+                                >Edit
+                            </button>
+                            <button
+                                onClick={() =>{
+                                    handleDelete(dadJoke);
+                                }}
+                                >Delete</button>
+
                         </div>
                     )
                 })

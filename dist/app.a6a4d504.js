@@ -31161,7 +31161,7 @@ var App = function App(props) {
       edit = _React$useState6[0],
       setEdit = _React$useState6[1];
 
-  var baseURL = 'http://localhost:3000/dadjokes';
+  var baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
 
   var getInfo = /*#__PURE__*/function () {
     var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -31333,23 +31333,27 @@ var App = function App(props) {
     };
   }();
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !showEditOrCreate && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
     newData: blank,
     handleSubmit: handleCreate,
     handleRandomJoke: handleRandomJoke
+  })), showEditOrCreate && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Edit.default, {
+    editData: edit,
+    handleSubmit: handleEdit,
+    resetForm: blank
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
-    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("div", {
-      className: "dad_joke_row"
-    }, /*#__PURE__*/_react.default.createElement(_Edit.default, {
-      editData: dadJoke,
-      handleSubmit: handleEdit
-    }), /*#__PURE__*/_react.default.createElement("button", {
+    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: function onClick() {
+        handleSelect(dadJoke);
+        setShowEditOrCreate(!showEditOrCreate);
+      }
+    }, "Edit"), /*#__PURE__*/_react.default.createElement("button", {
       onClick: function onClick() {
         handleDelete(dadJoke);
       }
-    }, "Delete")));
+    }, "Delete"));
   }) : "...Loading");
 };
 
@@ -31384,7 +31388,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50232" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54430" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
