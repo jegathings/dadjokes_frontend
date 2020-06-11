@@ -30991,7 +30991,11 @@ var _defineProperty2 = _interopRequireDefault(require("@babel/runtime/helpers/de
 
 var _slicedToArray2 = _interopRequireDefault(require("@babel/runtime/helpers/slicedToArray"));
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -31005,6 +31009,11 @@ var _default = function _default(props) {
       dadJokeData = _React$useState2[0],
       setDadJokeData = _React$useState2[1];
 
+  var _React$useState3 = _react.default.useState(false),
+      _React$useState4 = (0, _slicedToArray2.default)(_React$useState3, 2),
+      showEditOrCreate = _React$useState4[0],
+      setShowEditOrCreate = _React$useState4[1];
+
   _react.default.useEffect(function () {
     setDadJokeData(props.editData);
   }, [props.editData]);
@@ -31013,17 +31022,26 @@ var _default = function _default(props) {
     setDadJokeData(_objectSpread(_objectSpread({}, dadJokeData), {}, (0, _defineProperty2.default)({}, event.target.name, event.target.value)));
   };
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("h3", null, "Edit A Dad Joke"), /*#__PURE__*/_react.default.createElement("input", {
+  function handleClick() {
+    setShowEditOrCreate(!showEditOrCreate);
+  }
+
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
+    type: "button",
+    value: "Edit",
+    onClick: handleClick
+  }), showEditOrCreate && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     name: "joke",
     value: dadJokeData.joke,
     onChange: handleChange,
     placeholder: "Old McDonald Had A Farm"
-  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
+  }), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
+      setShowEditOrCreate(!showEditOrCreate);
       props.handleSubmit(dadJokeData);
     }
-  }, "Submit"));
+  }, "Submit")));
 };
 
 exports.default = _default;
@@ -31315,27 +31333,23 @@ var App = function App(props) {
     };
   }();
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !showEditOrCreate && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
     newData: blank,
     handleSubmit: handleCreate,
     handleRandomJoke: handleRandomJoke
-  })), showEditOrCreate && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Edit.default, {
-    editData: edit,
-    handleSubmit: handleEdit,
-    resetForm: blank
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
-    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("button", {
-      onClick: function onClick() {
-        handleSelect(dadJoke);
-        setShowEditOrCreate(!showEditOrCreate);
-      }
-    }, "Edit"), /*#__PURE__*/_react.default.createElement("button", {
+    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("div", {
+      className: "dad_joke_row"
+    }, /*#__PURE__*/_react.default.createElement(_Edit.default, {
+      editData: dadJoke,
+      handleSubmit: handleEdit
+    }), /*#__PURE__*/_react.default.createElement("button", {
       onClick: function onClick() {
         handleDelete(dadJoke);
       }
-    }, "Delete"));
+    }, "Delete")));
   }) : "...Loading");
 };
 
@@ -31370,7 +31384,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60706" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50232" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

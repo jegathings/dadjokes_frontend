@@ -1,32 +1,48 @@
-import React from 'react';
+import React, { useRef } from "react";
+
 
 export default (props) => {
-const [dadJokeData, setDadJokeData] = React.useState(props.editData);
+    const [dadJokeData, setDadJokeData] = React.useState(props.editData);
+    const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
+    
+    React.useEffect(() =>{
+        setDadJokeData(props.editData);
+    }, [props.editData]);
+    
+    const handleChange = (event) =>{
+        setDadJokeData({ ...dadJokeData, [event.target.name]: event.target.value})
+    }
 
-React.useEffect(() =>{
-    setDadJokeData(props.editData);
-}, [props.editData]);
+    function handleClick() {
+        setShowEditOrCreate(!showEditOrCreate);
+    }
 
-const handleChange = (event) =>{
-    setDadJokeData({ ...dadJokeData, [event.target.name]: event.target.value})
-}
-
-return (
-        <>
-        
-        <h3>Edit A Dad Joke</h3>
+    return (
+        <div>
             <input
-            type="text"
-            name="joke"
-            value={dadJokeData.joke}
-            onChange={handleChange}
-            placeholder="Old McDonald Had A Farm"
-            /><br/>
+                type="button"
+                value="Edit"
+                onClick={handleClick}
+            />
+            {
+            showEditOrCreate
+            &&
+            <div>
+            <input
+                type="text"
+                name="joke"
+                value={dadJokeData.joke}
+                onChange={handleChange}
+                placeholder="Old McDonald Had A Farm"
+            />
             <button
                 onClick={() =>{
+                    setShowEditOrCreate(!showEditOrCreate);
                     props.handleSubmit(dadJokeData);
                 }}
-                >Submit</button>
-        </>
-    );
-};
+             >Submit</button>
+             </div>
+            }
+        </div>
+        );
+    };

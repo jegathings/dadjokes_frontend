@@ -79,27 +79,10 @@ const App = (props) => {
 
     return (
         <>
-            {/**
-             * This toggles to either show the create functionality or show the edit functionality
-             */}
-            {
-            !showEditOrCreate 
-            && 
             <div>
                 <h3>Add A Dad joke</h3>
                 <New newData={blank} handleSubmit = {handleCreate} handleRandomJoke = {handleRandomJoke}/>
             </div>
-            }
-            {/**
-             * This toggles to either show the create functionality or show the edit functionality
-             */}
-            {
-            showEditOrCreate 
-            && 
-            <div>
-                <Edit editData={edit} handleSubmit={handleEdit} resetForm={blank}/>
-            </div>
-            }
             <hr/>
             {
                 dadJokes ? 
@@ -107,19 +90,14 @@ const App = (props) => {
                     return(
                         <div key={dadJoke._id}>
                         	<h1>{dadJoke.joke}</h1>
-                            <button
+                            <div className="dad_joke_row">
+                                <Edit editData={dadJoke} handleSubmit={handleEdit}/>
+                                <button
                                     onClick={() =>{
-                                        handleSelect(dadJoke);
-                                        setShowEditOrCreate(!showEditOrCreate);
+                                        handleDelete(dadJoke);
                                     }}
-                                >Edit
-                            </button>
-                            <button
-                                onClick={() =>{
-                                    handleDelete(dadJoke);
-                                }}
-                                >Delete</button>
-
+                                    >Delete</button>
+                            </div>
                         </div>
                     )
                 })
