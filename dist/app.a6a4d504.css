@@ -54,5 +54,10 @@ hr{
     flex-direction: row;
 }
 
+.answer {
+    color: rgb(44, 52, 156);
+    transition: width 2s, height 4s;
+}
+
 
 /*# sourceMappingURL=/app.a6a4d504.css.map */

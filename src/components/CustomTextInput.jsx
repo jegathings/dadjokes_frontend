@@ -50,6 +50,12 @@ render() {
             value={this.props.data.value}
             onChange={this.handleChange}            
             /><br/>
+            <input
+            type="text"
+            name="answer"
+            value={this.props.data.value}
+            onChange={this.handleChange}            
+            /><br/>
             <button
                 onClick={() =>{
                     this.props.handleSubmit(dadJokeData);

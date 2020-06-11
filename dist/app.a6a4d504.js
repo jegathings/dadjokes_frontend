@@ -30965,6 +30965,11 @@ var _default = function _default(props) {
     name: "joke",
     value: dadJokeData.joke,
     onChange: handleChange
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("span", null, "Answer:"), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "answer",
+    value: dadJokeData.answer,
+    onChange: handleChange
   }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
       props.handleSubmit(dadJokeData);
@@ -31036,6 +31041,12 @@ var _default = function _default(props) {
     value: dadJokeData.joke,
     onChange: handleChange,
     placeholder: "Old McDonald Had A Farm"
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "answer",
+    value: dadJokeData.answer,
+    onChange: handleChange,
+    placeholder: "And On His Farm..."
   }), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
       setShowEditOrCreate(!showEditOrCreate);
@@ -31153,7 +31164,8 @@ var App = function App(props) {
 
   var blank = {
     id: '',
-    joke: ''
+    joke: '',
+    answer: ''
   };
 
   var _React$useState5 = _react.default.useState(blank),
@@ -31239,7 +31251,9 @@ var App = function App(props) {
       }
     }).then(function (response) {
       handleCreate({
-        joke: response.data.setup + " " + response.data.punchline
+        joke: response.data.setup
+      }, {
+        answer: response.data.punchline
       });
       getInfo();
     });
@@ -31313,12 +31327,12 @@ var App = function App(props) {
   }();
 
   var handleSelect = /*#__PURE__*/function () {
-    var _ref5 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(joke) {
+    var _ref5 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(joke, answer) {
       return _regenerator.default.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              setEdit(joke);
+              setEdit(joke, answer);
 
             case 1:
             case "end":
@@ -31328,7 +31342,7 @@ var App = function App(props) {
       }, _callee5);
     }));
 
-    return function handleSelect(_x4) {
+    return function handleSelect(_x4, _x5) {
       return _ref5.apply(this, arguments);
     };
   }();
@@ -31340,7 +31354,9 @@ var App = function App(props) {
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
-    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("div", {
+    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("h1", {
+      className: "w3-animate-right"
+    }, dadJoke.answer), /*#__PURE__*/_react.default.createElement("div", {
       className: "dad_joke_row"
     }, /*#__PURE__*/_react.default.createElement(_Edit.default, {
       editData: dadJoke,
@@ -31384,7 +31400,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50232" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45915" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

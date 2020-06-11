@@ -35,6 +35,13 @@ export default (props) => {
                 onChange={handleChange}
                 placeholder="Old McDonald Had A Farm"
             />
+            <input
+                type="text"
+                name="answer"
+                value={dadJokeData.answer}
+                onChange={handleChange}
+                placeholder="And On His Farm..."
+            />
             <button
                 onClick={() =>{
                     setShowEditOrCreate(!showEditOrCreate);

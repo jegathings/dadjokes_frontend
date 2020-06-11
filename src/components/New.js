@@ -23,6 +23,13 @@ export default (props) => {
             value={dadJokeData.joke}
             onChange={handleChange}
             /><br/>
+            <span>Answer:</span>
+            <input 
+            type="text"
+            name="answer"
+            value={dadJokeData.answer}
+            onChange={handleChange}
+            /><br/>
             <button
                 onClick={() =>{
                     props.handleSubmit(dadJokeData);

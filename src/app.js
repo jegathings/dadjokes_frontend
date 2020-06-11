@@ -8,7 +8,7 @@ import './css/style.css';
 const App = (props) => {
     const [dadJokes, setDadJokes] = React.useState(null);
     const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
-    const blank = {id:'', joke: ''}
+    const blank = {id:'', joke: '', answer: ''}
     const [edit, setEdit] = React.useState(blank);
 
     const baseURL = 'http://localhost:3000/dadjokes';
@@ -40,7 +40,7 @@ const App = (props) => {
           headers: { Accept: 'application/json' }
         })
         .then(response => {
-            handleCreate({joke: response.data.setup + " " + response.data.punchline});
+            handleCreate({joke: response.data.setup}, {answer: response.data.punchline});
             getInfo();
         });
       }
@@ -73,8 +73,8 @@ const App = (props) => {
         getInfo();
     }
 
-    const handleSelect = async (joke) =>{
-        setEdit(joke);
+    const handleSelect = async (joke, answer) =>{
+        setEdit(joke, answer);
     };
 
     return (
@@ -90,6 +90,7 @@ const App = (props) => {
                     return(
                         <div key={dadJoke._id}>
                         	<h1>{dadJoke.joke}</h1>
+                            <h1 className="w3-animate-right">{dadJoke.answer}</h1>
                             <div className="dad_joke_row">
                                 <Edit editData={dadJoke} handleSubmit={handleEdit}/>
                                 <button
