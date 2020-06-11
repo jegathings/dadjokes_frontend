@@ -2,3 +2,5 @@
 .babelrc/
 .cache/
 /node_modules
+/dist/app.a6a4d504.js
+/dist/app.a6a4d504.js.map
