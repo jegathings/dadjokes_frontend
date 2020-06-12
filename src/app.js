@@ -6,12 +6,13 @@ import Edit from './components/Edit.js';
 import './css/style.css';
 
 const App = (props) => {
+    // This version is should be in master branch!!!!
     const [dadJokes, setDadJokes] = React.useState(null);
     const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
     const blank = {id:'', joke: ''}
     const [edit, setEdit] = React.useState(blank);
 
-    const baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
+    const baseURL = 'http://localhost:3000/dadjokes';
 
     const getInfo = async() =>{
         const response = await fetch(`${baseURL}/index`);
@@ -77,56 +78,30 @@ const App = (props) => {
         setEdit(joke);
     };
 
-    return (
-        <>
-            {/**
-             * This toggles to either show the create functionality or show the edit functionality
-             */}
-            {
-            !showEditOrCreate 
-            && 
-            <div>
-                <h3>Add A Dad joke</h3>
-                <New newData={blank} handleSubmit = {handleCreate} handleRandomJoke = {handleRandomJoke}/>
-            </div>
-            }
-            {/**
-             * This toggles to either show the create functionality or show the edit functionality
-             */}
-            {
-            showEditOrCreate 
-            && 
-            <div>
-                <Edit editData={edit} handleSubmit={handleEdit} resetForm={blank}/>
-            </div>
-            }
-            <hr/>
-            {
-                dadJokes ? 
-                dadJokes.map((dadJoke, index) => {
-                    return(
-                        <div key={dadJoke._id}>
-                        	<h1>{dadJoke.joke}</h1>
-                            <button
-                                    onClick={() =>{
-                                        handleSelect(dadJoke);
-                                        setShowEditOrCreate(!showEditOrCreate);
-                                    }}
-                                >Edit
-                            </button>
-                            <button
-                                onClick={() =>{
-                                    handleDelete(dadJoke);
-                                }}
-                                >Delete</button>
-
-                        </div>
-                    )
-                })
-                : "...Loading"
-            }
-        </>
-    );
+return (
+<>
+<div>
+<h3>Add A Dad joke</h3>
+<New newData={blank} handleSubmit = {handleCreate} handleRandomJoke = {handleRandomJoke}/>
+</div>
+<hr/>
+{
+dadJokes ? 
+dadJokes.map((dadJoke, index) => {
+return(
+<div key={dadJoke._id}>
+<h1>{dadJoke.joke}</h1>
+<div className="dad_joke_row">
+<Edit editData={dadJoke} handleSubmit={handleEdit}/>
+<button onClick={() =>{handleDelete(dadJoke);}}>Delete</button>
+</div>
+</div>
+)
+})
+: "...Loading"
+}
+</>
+);
 };
 
 const target = document.getElementById('app');
