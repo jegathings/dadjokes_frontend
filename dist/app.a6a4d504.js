@@ -30955,15 +30955,21 @@ var _default = function _default(props) {
   }, [props.newData]);
 
   var handleChange = function handleChange(event) {
+    console.log("HandleChange Event", event);
     setDadJokeData(_objectSpread(_objectSpread({}, dadJokeData), {}, (0, _defineProperty2.default)({}, event.target.name, event.target.value)));
   };
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "form"
-  }, /*#__PURE__*/_react.default.createElement("span", null, "Dad Joke:"), /*#__PURE__*/_react.default.createElement("input", {
+  }, /*#__PURE__*/_react.default.createElement("span", null, "Setup:"), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    name: "joke",
-    value: dadJokeData.joke,
+    name: "setup",
+    value: dadJokeData.setup,
+    onChange: handleChange
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("span", null, "Punchline:"), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "punchline",
+    value: dadJokeData.punchline,
     onChange: handleChange
   }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
@@ -31032,11 +31038,15 @@ var _default = function _default(props) {
     onClick: handleClick
   }), showEditOrCreate && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    name: "joke",
-    value: dadJokeData.joke,
-    onChange: handleChange,
-    placeholder: "Old McDonald Had A Farm"
-  }), /*#__PURE__*/_react.default.createElement("button", {
+    name: "setup",
+    value: dadJokeData.setup,
+    onChange: handleChange
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "punchline",
+    value: dadJokeData.punchline,
+    onChange: handleChange
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
       setShowEditOrCreate(!showEditOrCreate);
       props.handleSubmit(dadJokeData);
@@ -31154,7 +31164,8 @@ var App = function App(props) {
 
   var blank = {
     id: '',
-    joke: ''
+    setup: '',
+    punchline: ''
   };
 
   var _React$useState5 = _react.default.useState(blank),
@@ -31162,7 +31173,7 @@ var App = function App(props) {
       edit = _React$useState6[0],
       setEdit = _React$useState6[1];
 
-  var baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
+  var baseURL = 'http://localhost:3000/dadjokes';
 
   var getInfo = /*#__PURE__*/function () {
     var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -31240,7 +31251,8 @@ var App = function App(props) {
       }
     }).then(function (response) {
       handleCreate({
-        joke: response.data.setup + " " + response.data.punchline
+        setup: response.data.setup,
+        punchline: response.data.punchline
       });
       getInfo();
     });
@@ -31341,7 +31353,7 @@ var App = function App(props) {
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
-    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("div", {
+    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.setup), /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.punchline), /*#__PURE__*/_react.default.createElement("div", {
       className: "dad_joke_row"
     }, /*#__PURE__*/_react.default.createElement(_Edit.default, {
       editData: dadJoke,
@@ -31385,7 +31397,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61846" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63014" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

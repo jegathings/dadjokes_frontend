@@ -29,12 +29,17 @@ export default (props) => {
             &&
             <div>
             <input
-                type="text"
-                name="joke"
-                value={dadJokeData.joke}
-                onChange={handleChange}
-                placeholder="Old McDonald Had A Farm"
-            />
+            type="text"
+            name="setup"
+            value={dadJokeData.setup}
+            onChange={handleChange}
+            /><br/>
+            <input
+            type="text"
+            name="punchline"
+            value={dadJokeData.punchline}
+            onChange={handleChange}
+            /><br/>
             <button
                 onClick={() =>{
                     setShowEditOrCreate(!showEditOrCreate);

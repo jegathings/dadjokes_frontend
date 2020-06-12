@@ -9,18 +9,27 @@ export default (props) => {
     React.useEffect(() =>{
         setDadJokeData(props.newData);
     }, [props.newData]);
+
     const handleChange = (event) =>{
+        console.log("HandleChange Event", event);
         setDadJokeData({ ...dadJokeData, [event.target.name]: event.target.value})
     }
 
     return (
         <>
         <div className="form">
-            <span>Dad Joke:</span>
+            <span>Setup:</span>
             <input
             type="text"
-            name="joke"
-            value={dadJokeData.joke}
+            name="setup"
+            value={dadJokeData.setup}
+            onChange={handleChange}
+            /><br/>
+            <span>Punchline:</span>
+            <input
+            type="text"
+            name="punchline"
+            value={dadJokeData.punchline}
             onChange={handleChange}
             /><br/>
             <button
