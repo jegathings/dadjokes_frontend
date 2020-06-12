@@ -9,10 +9,10 @@ const App = (props) => {
     // This version is should be in master branch!!!!
     const [dadJokes, setDadJokes] = React.useState(null);
     const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
-    const blank = { id: '', joke: '' }
+    const blank = { id: '', setup: '', punchline: '' }
     const [edit, setEdit] = React.useState(blank);
 
-    const baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
+    const baseURL = 'http://localhost:3000/dadjokes';
 
     const getInfo = async () => {
         const response = await fetch(`${baseURL}/index`);
@@ -41,7 +41,7 @@ const App = (props) => {
                 headers: { Accept: 'application/json' }
             })
             .then(response => {
-                handleCreate({ joke: response.data.setup + " " + response.data.punchline });
+                handleCreate({ setup: response.data.setup, punchline: response.data.punchline });
                 getInfo();
             });
     }
@@ -86,12 +86,13 @@ const App = (props) => {
                 <New newData={blank} handleSubmit={handleCreate} handleRandomJoke={handleRandomJoke} />
             </div>
             <hr />
-            {
+            {                
                 dadJokes ?
                     dadJokes.map((dadJoke, index) => {
                         return (
                             <div key={dadJoke._id}>
-                                <h1>{dadJoke.joke}</h1>
+                                <h1>{dadJoke.setup}</h1>
+                                <h1>{dadJoke.punchline}</h1>
                                 <div className="dad_joke_row">
                                     <Edit editData={dadJoke} handleSubmit={handleEdit} />
                                     <button onClick={() => { handleDelete(dadJoke); }}>Delete</button>

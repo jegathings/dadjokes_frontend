@@ -17,32 +17,37 @@ function handleClick() {
 setShowEditOrCreate(!showEditOrCreate);
 }
 
-return (
-<div>
-<input
-type="button"
-value="Edit"
-onClick={handleClick}
-/>
-{
-showEditOrCreate
-&&
-<div>
-<input
-type="text"
-name="joke"
-value={dadJokeData.joke}
-onChange={handleChange}
-placeholder="Old McDonald Had A Farm"
-/>
-<button
-onClick={() =>{
-setShowEditOrCreate(!showEditOrCreate);
-props.handleSubmit(dadJokeData);
-}}
->Submit</button>
-</div>
-}
-</div>
-);
+    return (
+        <div>
+            <input
+                type="button"
+                value="Edit"
+                onClick={handleClick}
+            />
+            {
+            showEditOrCreate
+            &&
+            <div>
+            <input
+            type="text"
+            name="setup"
+            value={dadJokeData.setup}
+            onChange={handleChange}
+            /><br/>
+            <input
+            type="text"
+            name="punchline"
+            value={dadJokeData.punchline}
+            onChange={handleChange}
+            /><br/>
+            <button
+                onClick={() =>{
+                    setShowEditOrCreate(!showEditOrCreate);
+                    props.handleSubmit(dadJokeData);
+                }}
+             >Submit</button>
+             </div>
+            }
+        </div>
+        );
     };
