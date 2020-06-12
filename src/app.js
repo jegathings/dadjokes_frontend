@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import New from './components/New.js';
 import Edit from './components/Edit.js';
 import './css/style.css';
-require
+
 const App = (props) => {
     // This version is should be in master branch!!!!
     const [dadJokes, setDadJokes] = React.useState(null);
