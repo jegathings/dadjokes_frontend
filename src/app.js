@@ -9,12 +9,12 @@ const App = (props) => {
     // This version is should be in master branch!!!!
     const [dadJokes, setDadJokes] = React.useState(null);
     const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
-    const blank = {id:'', joke: ''}
+    const blank = { id: '', joke: '' }
     const [edit, setEdit] = React.useState(blank);
 
-    const baseURL = 'http://localhost:3000/dadjokes';
+    const baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
 
-    const getInfo = async() =>{
+    const getInfo = async () => {
         const response = await fetch(`${baseURL}/index`);
         const result = await response.json();
         setDadJokes(result);
@@ -22,7 +22,7 @@ const App = (props) => {
 
     React.useEffect(() => {
         getInfo()
-    },[]);
+    }, []);
 
     const handleCreate = async (data) => {
         const response = await fetch(`${baseURL}/create`, {
@@ -37,14 +37,14 @@ const App = (props) => {
 
     const handleRandomJoke = () => {
         axios
-        .get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
-          headers: { Accept: 'application/json' }
-        })
-        .then(response => {
-            handleCreate({joke: response.data.setup + " " + response.data.punchline});
-            getInfo();
-        });
-      }
+            .get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
+                headers: { Accept: 'application/json' }
+            })
+            .then(response => {
+                handleCreate({ joke: response.data.setup + " " + response.data.punchline });
+                getInfo();
+            });
+    }
 
     const handleEdit = async (data) => {
         const response = await fetch(
@@ -61,47 +61,48 @@ const App = (props) => {
         setShowEditOrCreate(!showEditOrCreate);
     };
 
-    const handleDelete = async (data) =>{
+    const handleDelete = async (data) => {
         const respone = await fetch(
             `${baseURL}/delete/${data._id}`,
             {
                 method: 'DELETE',
-                headers: {'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(data),
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
             }
         )
         getInfo();
     }
 
-    const handleSelect = async (joke) =>{
+    const handleSelect = async (joke) => {
         setEdit(joke);
     };
 
-return (
-<>
-<div>
-<h3>Add A Dad joke</h3>
-<New newData={blank} handleSubmit = {handleCreate} handleRandomJoke = {handleRandomJoke}/>
-</div>
-<hr/>
-{
-dadJokes ? 
-dadJokes.map((dadJoke, index) => {
-return(
-<div key={dadJoke._id}>
-<h1>{dadJoke.joke}</h1>
-<div className="dad_joke_row">
-<Edit editData={dadJoke} handleSubmit={handleEdit}/>
-<button onClick={() =>{handleDelete(dadJoke);}}>Delete</button>
-</div>
-</div>
-)
-})
-: "...Loading"
-}
-</>
-);
+    return (
+        <>
+            <div>
+                <h3>Add A Dad joke</h3>
+                <New newData={blank} handleSubmit={handleCreate} handleRandomJoke={handleRandomJoke} />
+            </div>
+            <hr />
+            {
+                dadJokes ?
+                    dadJokes.map((dadJoke, index) => {
+                        return (
+                            <div key={dadJoke._id}>
+                                <h1>{dadJoke.joke}</h1>
+                                <div className="dad_joke_row">
+                                    <Edit editData={dadJoke} handleSubmit={handleEdit} />
+                                    <button onClick={() => { handleDelete(dadJoke); }}>Delete</button>
+                                </div>
+                            </div>
+                        )
+                    })
+                    : "...Loading"
+            }
+        </>
+    );
 };
 
 const target = document.getElementById('app');
