@@ -91,14 +91,10 @@ const App = (props) => {
                     return(
                         <div key={dadJoke._id}>
                         	<h1>{dadJoke.joke}</h1>
-                            <div className="dad_joke_row">
-                                <Edit editData={dadJoke} handleSubmit={handleEdit}/>
-                                <button
-                                    onClick={() =>{
-                                        handleDelete(dadJoke);
-                                    }}
-                                    >Delete</button>
-                            </div>
+<div className="dad_joke_row">
+<Edit editData={dadJoke} handleSubmit={handleEdit}/>
+<button onClick={() =>{handleDelete(dadJoke);}}>Delete</button>
+</div>
                         </div>
                     )
                 })
