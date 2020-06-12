@@ -3,19 +3,17 @@ import axios from 'axios';
 import ReactDOM from 'react-dom';
 import New from './components/New.js';
 import Edit from './components/Edit.js';
-import dotenv from 'dotenv'
 import './css/style.css';
-
+require
 const App = (props) => {
-    dotenv.config();
+    // This version is should be in master branch!!!!
     const [dadJokes, setDadJokes] = React.useState(null);
     const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
     const blank = { id: '', joke: '' }
     const [edit, setEdit] = React.useState(blank);
 
-    const baseURL = process.env.baseURL;
-    console.log("Base URL", baseURL);
-    
+    const baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
+
     const getInfo = async () => {
         const response = await fetch(`${baseURL}/index`);
         const result = await response.json();
