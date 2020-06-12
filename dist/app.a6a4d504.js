@@ -31141,6 +31141,7 @@ require("./css/style.css");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App(props) {
+  // This version is should be in master branch!!!!
   var _React$useState = _react.default.useState(null),
       _React$useState2 = (0, _slicedToArray2.default)(_React$useState, 2),
       dadJokes = _React$useState2[0],
@@ -31333,27 +31334,23 @@ var App = function App(props) {
     };
   }();
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, !showEditOrCreate && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
+  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
     newData: blank,
     handleSubmit: handleCreate,
     handleRandomJoke: handleRandomJoke
-  })), showEditOrCreate && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Edit.default, {
-    editData: edit,
-    handleSubmit: handleEdit,
-    resetForm: blank
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
-    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("button", {
-      onClick: function onClick() {
-        handleSelect(dadJoke);
-        setShowEditOrCreate(!showEditOrCreate);
-      }
-    }, "Edit"), /*#__PURE__*/_react.default.createElement("button", {
+    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("div", {
+      className: "dad_joke_row"
+    }, /*#__PURE__*/_react.default.createElement(_Edit.default, {
+      editData: dadJoke,
+      handleSubmit: handleEdit
+    }), /*#__PURE__*/_react.default.createElement("button", {
       onClick: function onClick() {
         handleDelete(dadJoke);
       }
-    }, "Delete"));
+    }, "Delete")));
   }) : "...Loading");
 };
 
@@ -31388,7 +31385,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54430" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61846" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

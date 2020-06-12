@@ -12,7 +12,7 @@ const App = (props) => {
     const blank = {id:'', joke: ''}
     const [edit, setEdit] = React.useState(blank);
 
-    const baseURL = 'http://localhost:3000/dadjokes';
+    const baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
 
     const getInfo = async() =>{
         const response = await fetch(`${baseURL}/index`);
