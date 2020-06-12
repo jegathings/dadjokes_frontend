@@ -34,13 +34,25 @@ const App = (props) => {
         getInfo();
     }
 
+    const handleCreateTwo = async (data) => {
+        const response = await fetch(`${baseURL}/create`, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify(data),
+        });
+        getInfo();
+    }
+
     const handleRandomJoke = () => {
         axios
         .get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
           headers: { Accept: 'application/json' }
         })
         .then(response => {
-            handleCreate({joke: response.data.setup}, {answer: response.data.punchline});
+            handleCreate({joke: response.data.setup + " " + response.data.punchline});
+            handleCreateTwo({answer: response.data.punchline});
             getInfo();
         });
       }
@@ -78,10 +90,13 @@ const App = (props) => {
     };
 
     return (
-        <>
-            <div>
+        <div className="main-content">
+            <div className="wrapper">
+                <h1>Dad Jokes</h1>
+            </div>
+            <div className="add-a-joke">
                 <h3>Add A Dad joke</h3>
-                <New newData={blank} handleSubmit = {handleCreate} handleRandomJoke = {handleRandomJoke}/>
+                <New newData={blank} handleSubmit = {handleCreate, handleCreateTwo} handleRandomJoke = {handleRandomJoke}/>
             </div>
             <hr/>
             {
@@ -89,8 +104,8 @@ const App = (props) => {
                 dadJokes.map((dadJoke, index) => {
                     return(
                         <div key={dadJoke._id}>
-                        	<h1>{dadJoke.joke}</h1>
-                            <h1 className="w3-animate-right">{dadJoke.answer}</h1>
+                        	<h3>{dadJoke.joke}</h3>
+                            <h3 className="w3-animate-right">{dadJoke.answer}</h3>
                             <div className="dad_joke_row">
                                 <Edit editData={dadJoke} handleSubmit={handleEdit}/>
                                 <button
@@ -104,7 +119,7 @@ const App = (props) => {
                 })
                 : "...Loading"
             }
-        </>
+        </div>
     );
 };
 

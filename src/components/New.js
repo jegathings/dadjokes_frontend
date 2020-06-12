@@ -23,7 +23,7 @@ export default (props) => {
             value={dadJokeData.joke}
             onChange={handleChange}
             /><br/>
-            <span>Answer:</span>
+            <span>Answer:&nbsp;&nbsp;&nbsp;</span>
             <input 
             type="text"
             name="answer"

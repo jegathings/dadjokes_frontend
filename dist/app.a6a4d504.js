@@ -30965,7 +30965,7 @@ var _default = function _default(props) {
     name: "joke",
     value: dadJokeData.joke,
     onChange: handleChange
-  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("span", null, "Answer:"), /*#__PURE__*/_react.default.createElement("input", {
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("span", null, "Answer:\xA0\xA0\xA0"), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     name: "answer",
     value: dadJokeData.answer,
@@ -31244,22 +31244,7 @@ var App = function App(props) {
     };
   }();
 
-  var handleRandomJoke = function handleRandomJoke() {
-    _axios.default.get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
-      headers: {
-        Accept: 'application/json'
-      }
-    }).then(function (response) {
-      handleCreate({
-        joke: response.data.setup
-      }, {
-        answer: response.data.punchline
-      });
-      getInfo();
-    });
-  };
-
-  var handleEdit = /*#__PURE__*/function () {
+  var handleCreateTwo = /*#__PURE__*/function () {
     var _ref3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(data) {
       var response;
       return _regenerator.default.wrap(function _callee3$(_context3) {
@@ -31267,6 +31252,55 @@ var App = function App(props) {
           switch (_context3.prev = _context3.next) {
             case 0:
               _context3.next = 2;
+              return fetch("".concat(baseURL, "/create"), {
+                method: 'POST',
+                headers: {
+                  'Content-type': 'application/json'
+                },
+                body: JSON.stringify(data)
+              });
+
+            case 2:
+              response = _context3.sent;
+              getInfo();
+
+            case 4:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3);
+    }));
+
+    return function handleCreateTwo(_x2) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+
+  var handleRandomJoke = function handleRandomJoke() {
+    _axios.default.get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
+      headers: {
+        Accept: 'application/json'
+      }
+    }).then(function (response) {
+      handleCreate({
+        joke: response.data.setup + " " + response.data.punchline
+      });
+      handleCreateTwo({
+        answer: response.data.punchline
+      });
+      getInfo();
+    });
+  };
+
+  var handleEdit = /*#__PURE__*/function () {
+    var _ref4 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(data) {
+      var response;
+      return _regenerator.default.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
               return fetch("".concat(baseURL, "/update/").concat(data._id), {
                 method: 'PUT',
                 headers: {
@@ -31276,31 +31310,31 @@ var App = function App(props) {
               });
 
             case 2:
-              response = _context3.sent;
+              response = _context4.sent;
               getInfo();
               setShowEditOrCreate(!showEditOrCreate);
 
             case 5:
             case "end":
-              return _context3.stop();
+              return _context4.stop();
           }
         }
-      }, _callee3);
+      }, _callee4);
     }));
 
-    return function handleEdit(_x2) {
-      return _ref3.apply(this, arguments);
+    return function handleEdit(_x3) {
+      return _ref4.apply(this, arguments);
     };
   }();
 
   var handleDelete = /*#__PURE__*/function () {
-    var _ref4 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(data) {
+    var _ref5 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(data) {
       var respone;
-      return _regenerator.default.wrap(function _callee4$(_context4) {
+      return _regenerator.default.wrap(function _callee5$(_context5) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context5.prev = _context5.next) {
             case 0:
-              _context4.next = 2;
+              _context5.next = 2;
               return fetch("".concat(baseURL, "/delete/").concat(data._id), {
                 method: 'DELETE',
                 headers: {
@@ -31310,31 +31344,10 @@ var App = function App(props) {
               });
 
             case 2:
-              respone = _context4.sent;
+              respone = _context5.sent;
               getInfo();
 
             case 4:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4);
-    }));
-
-    return function handleDelete(_x3) {
-      return _ref4.apply(this, arguments);
-    };
-  }();
-
-  var handleSelect = /*#__PURE__*/function () {
-    var _ref5 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(joke, answer) {
-      return _regenerator.default.wrap(function _callee5$(_context5) {
-        while (1) {
-          switch (_context5.prev = _context5.next) {
-            case 0:
-              setEdit(joke, answer);
-
-            case 1:
             case "end":
               return _context5.stop();
           }
@@ -31342,19 +31355,46 @@ var App = function App(props) {
       }, _callee5);
     }));
 
-    return function handleSelect(_x4, _x5) {
+    return function handleDelete(_x4) {
       return _ref5.apply(this, arguments);
     };
   }();
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
+  var handleSelect = /*#__PURE__*/function () {
+    var _ref6 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6(joke, answer) {
+      return _regenerator.default.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              setEdit(joke, answer);
+
+            case 1:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6);
+    }));
+
+    return function handleSelect(_x5, _x6) {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "main-content"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "wrapper"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Dad Jokes")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "add-a-joke"
+  }, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
     newData: blank,
-    handleSubmit: handleCreate,
+    handleSubmit: (handleCreate, handleCreateTwo),
     handleRandomJoke: handleRandomJoke
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
-    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("h1", {
+    }, /*#__PURE__*/_react.default.createElement("h3", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("h3", {
       className: "w3-animate-right"
     }, dadJoke.answer), /*#__PURE__*/_react.default.createElement("div", {
       className: "dad_joke_row"
