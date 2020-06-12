@@ -30,15 +30,15 @@ export default (props) => {
             <div>
             <input
                 type="text"
-                name="joke"
-                value={dadJokeData.joke}
+                name="setup"
+                value={dadJokeData.setup}
                 onChange={handleChange}
                 placeholder="Old McDonald Had A Farm"
             />
             <input
                 type="text"
-                name="answer"
-                value={dadJokeData.answer}
+                name="punchline"
+                value={dadJokeData.punchline}
                 onChange={handleChange}
                 placeholder="And On His Farm..."
             />

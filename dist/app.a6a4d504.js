@@ -30962,13 +30962,13 @@ var _default = function _default(props) {
     className: "form"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Dad Joke:"), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    name: "joke",
-    value: dadJokeData.joke,
+    name: "setup",
+    value: dadJokeData.setup,
     onChange: handleChange
   }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("span", null, "Answer:\xA0\xA0\xA0"), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    name: "answer",
-    value: dadJokeData.answer,
+    name: "punchline",
+    value: dadJokeData.punchline,
     onChange: handleChange
   }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
@@ -31037,14 +31037,14 @@ var _default = function _default(props) {
     onClick: handleClick
   }), showEditOrCreate && /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    name: "joke",
-    value: dadJokeData.joke,
+    name: "setup",
+    value: dadJokeData.setup,
     onChange: handleChange,
     placeholder: "Old McDonald Had A Farm"
   }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
-    name: "answer",
-    value: dadJokeData.answer,
+    name: "punchline",
+    value: dadJokeData.punchline,
     onChange: handleChange,
     placeholder: "And On His Farm..."
   }), /*#__PURE__*/_react.default.createElement("button", {
@@ -31164,8 +31164,8 @@ var App = function App(props) {
 
   var blank = {
     id: '',
-    joke: '',
-    answer: ''
+    setup: '',
+    punchline: ''
   };
 
   var _React$useState5 = _react.default.useState(blank),
@@ -31212,7 +31212,7 @@ var App = function App(props) {
   }, []);
 
   var handleCreate = /*#__PURE__*/function () {
-    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(data) {
+    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(setup, punchline) {
       var response;
       return _regenerator.default.wrap(function _callee2$(_context2) {
         while (1) {
@@ -31224,7 +31224,7 @@ var App = function App(props) {
                 headers: {
                   'Content-type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(setup, punchline)
               });
 
             case 2:
@@ -31239,41 +31239,8 @@ var App = function App(props) {
       }, _callee2);
     }));
 
-    return function handleCreate(_x) {
+    return function handleCreate(_x, _x2) {
       return _ref2.apply(this, arguments);
-    };
-  }();
-
-  var handleCreateTwo = /*#__PURE__*/function () {
-    var _ref3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(data) {
-      var response;
-      return _regenerator.default.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _context3.next = 2;
-              return fetch("".concat(baseURL, "/create"), {
-                method: 'POST',
-                headers: {
-                  'Content-type': 'application/json'
-                },
-                body: JSON.stringify(data)
-              });
-
-            case 2:
-              response = _context3.sent;
-              getInfo();
-
-            case 4:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-
-    return function handleCreateTwo(_x2) {
-      return _ref3.apply(this, arguments);
     };
   }();
 
@@ -31284,23 +31251,33 @@ var App = function App(props) {
       }
     }).then(function (response) {
       handleCreate({
-        joke: response.data.setup + " " + response.data.punchline
+        setup: response.data.setup
       });
-      handleCreateTwo({
-        answer: response.data.punchline
+      getInfo();
+    });
+  };
+
+  var handleRandomPunchline = function handleRandomPunchline() {
+    _axios.default.get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
+      headers: {
+        Accept: 'application/json'
+      }
+    }).then(function (response) {
+      handleCreate({
+        punchline: response.data.punchline
       });
       getInfo();
     });
   };
 
   var handleEdit = /*#__PURE__*/function () {
-    var _ref4 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(data) {
+    var _ref3 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee3(data) {
       var response;
-      return _regenerator.default.wrap(function _callee4$(_context4) {
+      return _regenerator.default.wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context4.prev = _context4.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              _context4.next = 2;
+              _context3.next = 2;
               return fetch("".concat(baseURL, "/update/").concat(data._id), {
                 method: 'PUT',
                 headers: {
@@ -31310,31 +31287,31 @@ var App = function App(props) {
               });
 
             case 2:
-              response = _context4.sent;
+              response = _context3.sent;
               getInfo();
               setShowEditOrCreate(!showEditOrCreate);
 
             case 5:
             case "end":
-              return _context4.stop();
+              return _context3.stop();
           }
         }
-      }, _callee4);
+      }, _callee3);
     }));
 
     return function handleEdit(_x3) {
-      return _ref4.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
 
   var handleDelete = /*#__PURE__*/function () {
-    var _ref5 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(data) {
+    var _ref4 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee4(data) {
       var respone;
-      return _regenerator.default.wrap(function _callee5$(_context5) {
+      return _regenerator.default.wrap(function _callee4$(_context4) {
         while (1) {
-          switch (_context5.prev = _context5.next) {
+          switch (_context4.prev = _context4.next) {
             case 0:
-              _context5.next = 2;
+              _context4.next = 2;
               return fetch("".concat(baseURL, "/delete/").concat(data._id), {
                 method: 'DELETE',
                 headers: {
@@ -31344,10 +31321,31 @@ var App = function App(props) {
               });
 
             case 2:
-              respone = _context5.sent;
+              respone = _context4.sent;
               getInfo();
 
             case 4:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4);
+    }));
+
+    return function handleDelete(_x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
+
+  var handleSelect = /*#__PURE__*/function () {
+    var _ref5 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(setup, punchline) {
+      return _regenerator.default.wrap(function _callee5$(_context5) {
+        while (1) {
+          switch (_context5.prev = _context5.next) {
+            case 0:
+              setEdit(setup, punchline);
+
+            case 1:
             case "end":
               return _context5.stop();
           }
@@ -31355,29 +31353,8 @@ var App = function App(props) {
       }, _callee5);
     }));
 
-    return function handleDelete(_x4) {
-      return _ref5.apply(this, arguments);
-    };
-  }();
-
-  var handleSelect = /*#__PURE__*/function () {
-    var _ref6 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6(joke, answer) {
-      return _regenerator.default.wrap(function _callee6$(_context6) {
-        while (1) {
-          switch (_context6.prev = _context6.next) {
-            case 0:
-              setEdit(joke, answer);
-
-            case 1:
-            case "end":
-              return _context6.stop();
-          }
-        }
-      }, _callee6);
-    }));
-
     return function handleSelect(_x5, _x6) {
-      return _ref6.apply(this, arguments);
+      return _ref5.apply(this, arguments);
     };
   }();
 
@@ -31389,14 +31366,15 @@ var App = function App(props) {
     className: "add-a-joke"
   }, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
     newData: blank,
-    handleSubmit: (handleCreate, handleCreateTwo),
-    handleRandomJoke: handleRandomJoke
+    handleSubmit: handleCreate,
+    handleRandomJoke: handleRandomJoke,
+    handleRandomPunchline: handleRandomPunchline
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
-    }, /*#__PURE__*/_react.default.createElement("h3", null, dadJoke.joke), /*#__PURE__*/_react.default.createElement("h3", {
+    }, /*#__PURE__*/_react.default.createElement("h3", null, dadJoke.setup), /*#__PURE__*/_react.default.createElement("h3", {
       className: "w3-animate-right"
-    }, dadJoke.answer), /*#__PURE__*/_react.default.createElement("div", {
+    }, dadJoke.punchline), /*#__PURE__*/_react.default.createElement("div", {
       className: "dad_joke_row"
     }, /*#__PURE__*/_react.default.createElement(_Edit.default, {
       editData: dadJoke,
@@ -31440,7 +31418,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "45915" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41403" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

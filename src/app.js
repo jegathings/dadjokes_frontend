@@ -8,7 +8,7 @@ import './css/style.css';
 const App = (props) => {
     const [dadJokes, setDadJokes] = React.useState(null);
     const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
-    const blank = {id:'', joke: '', answer: ''}
+    const blank = {id:'', setup: '', punchline: ''}
     const [edit, setEdit] = React.useState(blank);
 
     const baseURL = 'http://localhost:3000/dadjokes';
@@ -23,36 +23,35 @@ const App = (props) => {
         getInfo()
     },[]);
 
-    const handleCreate = async (data) => {
+    const handleCreate = async (setup, punchline) => {
         const response = await fetch(`${baseURL}/create`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(setup, punchline),
         });
         getInfo();
     }
 
-    const handleCreateTwo = async (data) => {
-        const response = await fetch(`${baseURL}/create`, {
-            method: 'POST',
-            headers: {
-                'Content-type': 'application/json',
-            },
-            body: JSON.stringify(data),
-        });
-        getInfo();
-    }
-
-    const handleRandomJoke = () => {
+        const handleRandomJoke = () => {
         axios
         .get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
           headers: { Accept: 'application/json' }
         })
         .then(response => {
-            handleCreate({joke: response.data.setup + " " + response.data.punchline});
-            handleCreateTwo({answer: response.data.punchline});
+            handleCreate({setup: response.data.setup});
+            getInfo();
+        });
+      }
+
+      const handleRandomPunchline = () => {
+        axios
+        .get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
+          headers: { Accept: 'application/json' }
+        })
+        .then(response => {
+            handleCreate({punchline: response.data.punchline});
             getInfo();
         });
       }
@@ -85,8 +84,8 @@ const App = (props) => {
         getInfo();
     }
 
-    const handleSelect = async (joke, answer) =>{
-        setEdit(joke, answer);
+    const handleSelect = async (setup, punchline) =>{
+        setEdit(setup, punchline);
     };
 
     return (
@@ -96,7 +95,8 @@ const App = (props) => {
             </div>
             <div className="add-a-joke">
                 <h3>Add A Dad joke</h3>
-                <New newData={blank} handleSubmit = {handleCreate, handleCreateTwo} handleRandomJoke = {handleRandomJoke}/>
+                <New newData={blank} handleSubmit = {handleCreate} handleRandomJoke = {handleRandomJoke}
+                handleRandomPunchline = {handleRandomPunchline} />
             </div>
             <hr/>
             {
@@ -104,8 +104,8 @@ const App = (props) => {
                 dadJokes.map((dadJoke, index) => {
                     return(
                         <div key={dadJoke._id}>
-                        	<h3>{dadJoke.joke}</h3>
-                            <h3 className="w3-animate-right">{dadJoke.answer}</h3>
+                        	<h3>{dadJoke.setup}</h3>
+                            <h3 className="w3-animate-right">{dadJoke.punchline}</h3>
                             <div className="dad_joke_row">
                                 <Edit editData={dadJoke} handleSubmit={handleEdit}/>
                                 <button

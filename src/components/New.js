@@ -19,15 +19,15 @@ export default (props) => {
             <span>Dad Joke:</span>
             <input
             type="text"
-            name="joke"
-            value={dadJokeData.joke}
+            name="setup"
+            value={dadJokeData.setup}
             onChange={handleChange}
             /><br/>
             <span>Answer:&nbsp;&nbsp;&nbsp;</span>
             <input 
             type="text"
-            name="answer"
-            value={dadJokeData.answer}
+            name="punchline"
+            value={dadJokeData.punchline}
             onChange={handleChange}
             /><br/>
             <button

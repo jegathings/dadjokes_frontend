@@ -46,13 +46,13 @@ render() {
         <div ref={this.setTextInputRef}>  
             <input
             type="text"
-            name="joke"
+            name="setup"
             value={this.props.data.value}
             onChange={this.handleChange}            
             /><br/>
             <input
             type="text"
-            name="answer"
+            name="punchline"
             value={this.props.data.value}
             onChange={this.handleChange}            
             /><br/>

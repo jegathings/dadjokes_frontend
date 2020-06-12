@@ -112,7 +112,7 @@ input[type=text] {
     -text-fill-color: transparent;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    animation: textclip 8.5s linear infinite;
+    animation: textclip 1.5s linear infinite;
     display: inline-block;
 }
 
