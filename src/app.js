@@ -78,30 +78,30 @@ const App = (props) => {
         setEdit(joke);
     };
 
-    return (
-        <>
-            <div>
-                <h3>Add A Dad joke</h3>
-                <New newData={blank} handleSubmit = {handleCreate} handleRandomJoke = {handleRandomJoke}/>
-            </div>
-            <hr/>
-            {
-                dadJokes ? 
-                dadJokes.map((dadJoke, index) => {
-                    return(
-                        <div key={dadJoke._id}>
-                        	<h1>{dadJoke.joke}</h1>
+return (
+<>
+<div>
+<h3>Add A Dad joke</h3>
+<New newData={blank} handleSubmit = {handleCreate} handleRandomJoke = {handleRandomJoke}/>
+</div>
+<hr/>
+{
+dadJokes ? 
+dadJokes.map((dadJoke, index) => {
+return(
+<div key={dadJoke._id}>
+<h1>{dadJoke.joke}</h1>
 <div className="dad_joke_row">
 <Edit editData={dadJoke} handleSubmit={handleEdit}/>
 <button onClick={() =>{handleDelete(dadJoke);}}>Delete</button>
 </div>
-                        </div>
-                    )
-                })
-                : "...Loading"
-            }
-        </>
-    );
+</div>
+)
+})
+: "...Loading"
+}
+</>
+);
 };
 
 const target = document.getElementById('app');
