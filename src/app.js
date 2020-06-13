@@ -12,30 +12,30 @@ const App = (props) => {
     const blank = { id: '', setup: '', punchline: '' }
     const [edit, setEdit] = React.useState(blank);
 
-    const baseURL = 'http://localhost:3000/dadjokes';
+    const baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
 
     const getInfo = async () => {
         const response = await fetch(`${baseURL}/index`);
         const result = await response.json();
-        setDadJokes(result);
+        setDadJokes(result.reverse());
     }
 
     React.useEffect(() => {
         getInfo()
     }, []);
 
-    const handleCreate = async (data) => {
+    const handleCreate = async (setup, punchline) => {
         const response = await fetch(`${baseURL}/create`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(setup, punchline),
         });
         getInfo();
     }
 
-    const handleRandomJoke = () => {
+        const handleRandomJoke = () => {
         axios
             .get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
                 headers: { Accept: 'application/json' }
@@ -75,14 +75,17 @@ const App = (props) => {
         getInfo();
     }
 
-    const handleSelect = async (joke) => {
-        setEdit(joke);
+    const handleSelect = async (setup, punchline) =>{
+        setEdit(setup, punchline);
     };
 
     return (
-        <>
-            <div>
-                <h3>Add A Dad joke</h3>
+        <div className="main-content">
+        <div className="wrapper">
+            <h1>Dad Jokes</h1>
+        </div>
+        <div className="add-a-joke">
+            <h3>Add A Dad joke</h3>
                 <New newData={blank} handleSubmit={handleCreate} handleRandomJoke={handleRandomJoke} />
             </div>
             <hr />
@@ -91,18 +94,22 @@ const App = (props) => {
                     dadJokes.map((dadJoke, index) => {
                         return (
                             <div key={dadJoke._id}>
+                                
                                 <h1>{dadJoke.setup}</h1>
-                                <h1>{dadJoke.punchline}</h1>
+                                <h1 className="typing">{dadJoke.punchline}</h1>
+                                
                                 <div className="dad_joke_row">
+                                    <div className="edit_delete">
                                     <Edit editData={dadJoke} handleSubmit={handleEdit} />
                                     <button onClick={() => { handleDelete(dadJoke); }}>Delete</button>
+                                    </div>
                                 </div>
                             </div>
                         )
                     })
                     : "...Loading"
             }
-        </>
+        </div>
     );
 };
 

@@ -4096,7 +4096,7 @@ module.exports = function xhrAdapter(config) {
   });
 };
 
-},{"./../utils":"node_modules/axios/lib/utils.js","./../core/settle":"node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","../core/buildFullPath":"node_modules/axios/lib/core/buildFullPath.js","./../helpers/parseHeaders":"node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"node_modules/axios/lib/core/createError.js","./../helpers/cookies":"node_modules/axios/lib/helpers/cookies.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
+},{"./../utils":"node_modules/axios/lib/utils.js","./../core/settle":"node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","../core/buildFullPath":"node_modules/axios/lib/core/buildFullPath.js","./../helpers/parseHeaders":"node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"node_modules/axios/lib/core/createError.js","./../helpers/cookies":"node_modules/axios/lib/helpers/cookies.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -4405,7 +4405,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-},{"./utils":"node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/xhr":"node_modules/axios/lib/adapters/xhr.js","./adapters/http":"node_modules/axios/lib/adapters/xhr.js","process":"node_modules/process/browser.js"}],"node_modules/axios/lib/core/dispatchRequest.js":[function(require,module,exports) {
+},{"./utils":"node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/xhr":"node_modules/axios/lib/adapters/xhr.js","./adapters/http":"node_modules/axios/lib/adapters/xhr.js","process":"../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/process/browser.js"}],"node_modules/axios/lib/core/dispatchRequest.js":[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -30961,6 +30961,8 @@ var _default = function _default(props) {
 
   return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", {
     className: "form"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "setup_row_punchline_row"
   }, /*#__PURE__*/_react.default.createElement("span", null, "Setup:"), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     name: "setup",
@@ -30971,7 +30973,7 @@ var _default = function _default(props) {
     name: "punchline",
     value: dadJokeData.punchline,
     onChange: handleChange
-  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
+  })), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
       props.handleSubmit(dadJokeData);
       resetDadJokeData(resetForm);
@@ -31032,7 +31034,9 @@ var _default = function _default(props) {
     setShowEditOrCreate(!showEditOrCreate);
   }
 
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("input", {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "buttons"
+  }, /*#__PURE__*/_react.default.createElement("input", {
     type: "button",
     value: "Edit",
     onClick: handleClick
@@ -31040,13 +31044,15 @@ var _default = function _default(props) {
     type: "text",
     name: "setup",
     value: dadJokeData.setup,
-    onChange: handleChange
-  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("input", {
+    onChange: handleChange,
+    placeholder: "Old McDonald Had A Farm"
+  }), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
     name: "punchline",
     value: dadJokeData.punchline,
-    onChange: handleChange
-  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
+    onChange: handleChange,
+    placeholder: "And On His Farm..."
+  }), /*#__PURE__*/_react.default.createElement("button", {
     onClick: function onClick() {
       setShowEditOrCreate(!showEditOrCreate);
       props.handleSubmit(dadJokeData);
@@ -31173,7 +31179,7 @@ var App = function App(props) {
       edit = _React$useState6[0],
       setEdit = _React$useState6[1];
 
-  var baseURL = 'http://localhost:3000/dadjokes';
+  var baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
 
   var getInfo = /*#__PURE__*/function () {
     var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -31192,7 +31198,7 @@ var App = function App(props) {
 
             case 5:
               result = _context.sent;
-              setDadJokes(result);
+              setDadJokes(result.reverse());
 
             case 7:
             case "end":
@@ -31212,7 +31218,7 @@ var App = function App(props) {
   }, []);
 
   var handleCreate = /*#__PURE__*/function () {
-    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(data) {
+    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(setup, punchline) {
       var response;
       return _regenerator.default.wrap(function _callee2$(_context2) {
         while (1) {
@@ -31224,7 +31230,7 @@ var App = function App(props) {
                 headers: {
                   'Content-type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(setup, punchline)
               });
 
             case 2:
@@ -31239,7 +31245,7 @@ var App = function App(props) {
       }, _callee2);
     }));
 
-    return function handleCreate(_x) {
+    return function handleCreate(_x, _x2) {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -31287,7 +31293,7 @@ var App = function App(props) {
       }, _callee3);
     }));
 
-    return function handleEdit(_x2) {
+    return function handleEdit(_x3) {
       return _ref3.apply(this, arguments);
     };
   }();
@@ -31320,18 +31326,18 @@ var App = function App(props) {
       }, _callee4);
     }));
 
-    return function handleDelete(_x3) {
+    return function handleDelete(_x4) {
       return _ref4.apply(this, arguments);
     };
   }();
 
   var handleSelect = /*#__PURE__*/function () {
-    var _ref5 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(joke) {
+    var _ref5 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(setup, punchline) {
       return _regenerator.default.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              setEdit(joke);
+              setEdit(setup, punchline);
 
             case 1:
             case "end":
@@ -31341,20 +31347,30 @@ var App = function App(props) {
       }, _callee5);
     }));
 
-    return function handleSelect(_x4) {
+    return function handleSelect(_x5, _x6) {
       return _ref5.apply(this, arguments);
     };
   }();
 
-  return /*#__PURE__*/_react.default.createElement(_react.default.Fragment, null, /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "main-content"
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "wrapper"
+  }, /*#__PURE__*/_react.default.createElement("h1", null, "Dad Jokes")), /*#__PURE__*/_react.default.createElement("div", {
+    className: "add-a-joke"
+  }, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
     newData: blank,
     handleSubmit: handleCreate,
     handleRandomJoke: handleRandomJoke
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
-    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.setup), /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.punchline), /*#__PURE__*/_react.default.createElement("div", {
+    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.setup), /*#__PURE__*/_react.default.createElement("h1", {
+      className: "typing"
+    }, dadJoke.punchline), /*#__PURE__*/_react.default.createElement("div", {
       className: "dad_joke_row"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "edit_delete"
     }, /*#__PURE__*/_react.default.createElement(_Edit.default, {
       editData: dadJoke,
       handleSubmit: handleEdit
@@ -31362,7 +31378,7 @@ var App = function App(props) {
       onClick: function onClick() {
         handleDelete(dadJoke);
       }
-    }, "Delete")));
+    }, "Delete"))));
   }) : "...Loading");
 };
 
@@ -31397,7 +31413,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54493" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34525" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
