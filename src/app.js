@@ -17,7 +17,7 @@ const App = (props) => {
     const getInfo = async () => {
         const response = await fetch(`${baseURL}/index`);
         const result = await response.json();
-        setDadJokes(result);
+        setDadJokes(result.reverse());
     }
 
     React.useEffect(() => {

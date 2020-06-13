@@ -31198,7 +31198,7 @@ var App = function App(props) {
 
             case 5:
               result = _context.sent;
-              setDadJokes(result);
+              setDadJokes(result.reverse());
 
             case 7:
             case "end":
