@@ -4,38 +4,39 @@ import ReactDOM from 'react-dom';
 import New from './components/New.js';
 import Edit from './components/Edit.js';
 import './css/style.css';
+import BeautyStars from 'beauty-stars';
 
 const App = (props) => {
     // This version is should be in master branch!!!!
     const [dadJokes, setDadJokes] = React.useState(null);
     const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
-    const blank = { id: '', setup: '', punchline: '' }
+    const blank = { id: '', setup: '', punchline: '' , rating: ''}
     const [edit, setEdit] = React.useState(blank);
 
-    const baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
+    const baseURL = 'http://localhost:3000/dadjokes';
 
     const getInfo = async () => {
         const response = await fetch(`${baseURL}/index`);
         const result = await response.json();
-        setDadJokes(result);
+        setDadJokes(result.reverse());
     }
 
     React.useEffect(() => {
         getInfo()
     }, []);
 
-    const handleCreate = async (data) => {
+    const handleCreate = async (setup, punchline) => {
         const response = await fetch(`${baseURL}/create`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(setup, punchline),
         });
         getInfo();
     }
 
-    const handleRandomJoke = () => {
+        const handleRandomJoke = () => {
         axios
             .get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
                 headers: { Accept: 'application/json' }
@@ -75,34 +76,75 @@ const App = (props) => {
         getInfo();
     }
 
-    const handleSelect = async (joke) => {
-        setEdit(joke);
+    const handleSelect = async (setup, punchline) =>{
+        setEdit(setup, punchline);
     };
 
+    const handleRating = async (dadJoke, value) =>{
+        dadJoke.rating = value.toString();
+        const response = await fetch(
+            `${baseURL}/update/${dadJoke._id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dadJoke),
+            }
+        );
+        getInfo();
+
+        console.log("Handle Rating", dadJoke);
+    }
     return (
-        <>
-            <div>
-                <h3>Add A Dad joke</h3>
+        <div className="main-content">
+        <div className="wrapper">
+            <h1>Dad Jokes</h1>
+        </div>
+        <div className="add-a-joke">
+            <h3>Add A Dad joke</h3>
                 <New newData={blank} handleSubmit={handleCreate} handleRandomJoke={handleRandomJoke} />
             </div>
             <hr />
             {                
                 dadJokes ?
                     dadJokes.map((dadJoke, index) => {
+                        console.log("Return", dadJoke);
                         return (
                             <div key={dadJoke._id}>
-                                <h1>{dadJoke.setup}</h1>
-                                <h1>{dadJoke.punchline}</h1>
-                                <div className="dad_joke_row">
-                                    <Edit editData={dadJoke} handleSubmit={handleEdit} />
-                                    <button onClick={() => { handleDelete(dadJoke); }}>Delete</button>
+                                
+                                {
+                                index % 2 === 0 ? 
+                                <div className="even">
+                                    <h1>{dadJoke.setup}</h1>
+                                    <h1 className="typing">{dadJoke.punchline}</h1>
+                                    <BeautyStars value={dadJoke.rating} onChange={value => handleRating(dadJoke, value)}/>
+                                    <div className="dad_joke_row">
+                                        <div className="edit_delete">
+                                            <Edit editData={dadJoke} handleSubmit={handleEdit} />
+                                            <button onClick={() => { handleDelete(dadJoke); }}>Delete</button>
+                                        </div>
+                                    </div>
                                 </div>
+                                :
+                                <div className="odd">
+                                    <h1>{dadJoke.setup}</h1>
+                                    <h1 className="typing">{dadJoke.punchline}</h1>
+                                    <BeautyStars value={dadJoke.rating} onChange={value => handleRating(dadJoke, value)}/>
+                                    <div className="dad_joke_row odd">
+                                        <div className="edit_delete">
+                                            <Edit editData={dadJoke} handleSubmit={handleEdit} />
+                                            <button onClick={() => { handleDelete(dadJoke); }}>Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                    }
                             </div>
                         )
                     })
                     : "...Loading"
             }
-        </>
+        </div>
     );
 };
 

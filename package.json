@@ -12,16 +12,18 @@
     "license": "ISC",
     "dependencies": {
         "axios": "^0.19.2",
+        "beauty-stars": "^1.1.0",
         "parcel": "^1.12.4",
         "react": "^16.13.1",
         "react-dom": "^16.13.1",
         "react-is": "^16.13.1",
+        "react-star-ratings": "^2.3.0",
         "styled-components": "^5.1.1"
     },
     "devDependencies": {
-        "@babel/core": "^7.9.6",
+        "@babel/core": "^7.10.2",
+        "@babel/plugin-transform-runtime": "^7.10.1",
         "@babel/preset-env": "^7.9.6",
-        "@babel/preset-react": "^7.9.4",
-        "@babel/plugin-transform-runtime": "^7.10.1"
+        "@babel/preset-react": "^7.10.1"
     }
 }

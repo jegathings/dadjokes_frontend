@@ -18,6 +18,7 @@ export default (props) => {
     return (
         <>
         <div className="form">
+            <div className="setup_row_punchline_row">
             <span>Setup:</span>
             <input
             type="text"
@@ -31,7 +32,8 @@ export default (props) => {
             name="punchline"
             value={dadJokeData.punchline}
             onChange={handleChange}
-            /><br/>
+            />
+            </div><br/>
             <button
                 onClick={() =>{
                     props.handleSubmit(dadJokeData);
