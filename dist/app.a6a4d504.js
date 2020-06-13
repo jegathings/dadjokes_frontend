@@ -31175,7 +31175,7 @@ var App = function App(props) {
       edit = _React$useState6[0],
       setEdit = _React$useState6[1];
 
-  var baseURL = 'http://localhost:3000/dadjokes';
+  var baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
 
   var getInfo = /*#__PURE__*/function () {
     var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
