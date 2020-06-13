@@ -80,9 +80,12 @@ const App = (props) => {
     };
 
     return (
-        <>
-            <div>
-                <h3>Add A Dad joke</h3>
+        <div className="main-content">
+        <div className="wrapper">
+            <h1>Dad Jokes</h1>
+        </div>
+        <div className="add-a-joke">
+            <h3>Add A Dad joke</h3>
                 <New newData={blank} handleSubmit={handleCreate} handleRandomJoke={handleRandomJoke} />
             </div>
             <hr />
@@ -91,18 +94,20 @@ const App = (props) => {
                     dadJokes.map((dadJoke, index) => {
                         return (
                             <div key={dadJoke._id}>
-                                <h1>{dadJoke.setup}</h1>
+                                <h1 className="typing">{dadJoke.setup}</h1>
                                 <h1>{dadJoke.punchline}</h1>
                                 <div className="dad_joke_row">
+                                    <div className="edit_delete">
                                     <Edit editData={dadJoke} handleSubmit={handleEdit} />
                                     <button onClick={() => { handleDelete(dadJoke); }}>Delete</button>
+                                    </div>
                                 </div>
                             </div>
                         )
                     })
                     : "...Loading"
             }
-        </>
+        </div>
     );
 };
 

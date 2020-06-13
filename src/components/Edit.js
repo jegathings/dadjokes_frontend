@@ -18,7 +18,7 @@ export default (props) => {
     }
 
     return (
-        <div>
+        <div className="buttons">
             <input
                 type="button"
                 value="Edit"

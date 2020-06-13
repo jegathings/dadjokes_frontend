@@ -18,14 +18,14 @@ export default (props) => {
     return (
         <>
         <div className="form">
-            <span>Setup:</span>
+            <span>Joke:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
             <input
             type="text"
             name="setup"
             value={dadJokeData.setup}
             onChange={handleChange}
             /><br/>
-            <span>Punchline:</span>
+            <span>Answer:&nbsp;</span>
             <input
             type="text"
             name="punchline"
