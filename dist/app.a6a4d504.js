@@ -4096,7 +4096,7 @@ module.exports = function xhrAdapter(config) {
   });
 };
 
-},{"./../utils":"node_modules/axios/lib/utils.js","./../core/settle":"node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","../core/buildFullPath":"node_modules/axios/lib/core/buildFullPath.js","./../helpers/parseHeaders":"node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"node_modules/axios/lib/core/createError.js","./../helpers/cookies":"node_modules/axios/lib/helpers/cookies.js"}],"../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/process/browser.js":[function(require,module,exports) {
+},{"./../utils":"node_modules/axios/lib/utils.js","./../core/settle":"node_modules/axios/lib/core/settle.js","./../helpers/buildURL":"node_modules/axios/lib/helpers/buildURL.js","../core/buildFullPath":"node_modules/axios/lib/core/buildFullPath.js","./../helpers/parseHeaders":"node_modules/axios/lib/helpers/parseHeaders.js","./../helpers/isURLSameOrigin":"node_modules/axios/lib/helpers/isURLSameOrigin.js","../core/createError":"node_modules/axios/lib/core/createError.js","./../helpers/cookies":"node_modules/axios/lib/helpers/cookies.js"}],"node_modules/process/browser.js":[function(require,module,exports) {
 
 // shim for using process in browser
 var process = module.exports = {}; // cached from whatever global is present so that test runners that stub it
@@ -4405,7 +4405,7 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-},{"./utils":"node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/xhr":"node_modules/axios/lib/adapters/xhr.js","./adapters/http":"node_modules/axios/lib/adapters/xhr.js","process":"../../../../../../usr/local/lib/node_modules/parcel-bundler/node_modules/process/browser.js"}],"node_modules/axios/lib/core/dispatchRequest.js":[function(require,module,exports) {
+},{"./utils":"node_modules/axios/lib/utils.js","./helpers/normalizeHeaderName":"node_modules/axios/lib/helpers/normalizeHeaderName.js","./adapters/xhr":"node_modules/axios/lib/adapters/xhr.js","./adapters/http":"node_modules/axios/lib/adapters/xhr.js","process":"node_modules/process/browser.js"}],"node_modules/axios/lib/core/dispatchRequest.js":[function(require,module,exports) {
 'use strict';
 
 var utils = require('./../utils');
@@ -31365,6 +31365,8 @@ var App = function App(props) {
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
+    }, index % 2 === 0 ? /*#__PURE__*/_react.default.createElement("div", {
+      className: "even"
     }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.setup), /*#__PURE__*/_react.default.createElement("h1", {
       className: "typing"
     }, dadJoke.punchline), /*#__PURE__*/_react.default.createElement("div", {
@@ -31378,7 +31380,22 @@ var App = function App(props) {
       onClick: function onClick() {
         handleDelete(dadJoke);
       }
-    }, "Delete"))));
+    }, "Delete")))) : /*#__PURE__*/_react.default.createElement("div", {
+      className: "odd"
+    }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.setup), /*#__PURE__*/_react.default.createElement("h1", {
+      className: "typing"
+    }, dadJoke.punchline), /*#__PURE__*/_react.default.createElement("div", {
+      className: "dad_joke_row odd"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "edit_delete"
+    }, /*#__PURE__*/_react.default.createElement(_Edit.default, {
+      editData: dadJoke,
+      handleSubmit: handleEdit
+    }), /*#__PURE__*/_react.default.createElement("button", {
+      onClick: function onClick() {
+        handleDelete(dadJoke);
+      }
+    }, "Delete")))));
   }) : "...Loading");
 };
 
@@ -31413,7 +31430,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "34525" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52826" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

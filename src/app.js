@@ -95,15 +95,30 @@ const App = (props) => {
                         return (
                             <div key={dadJoke._id}>
                                 
-                                <h1>{dadJoke.setup}</h1>
-                                <h1 className="typing">{dadJoke.punchline}</h1>
-                                
-                                <div className="dad_joke_row">
-                                    <div className="edit_delete">
-                                    <Edit editData={dadJoke} handleSubmit={handleEdit} />
-                                    <button onClick={() => { handleDelete(dadJoke); }}>Delete</button>
+                                {
+                                index % 2 === 0 ? 
+                                <div className="even">
+                                    <h1>{dadJoke.setup}</h1>
+                                    <h1 className="typing">{dadJoke.punchline}</h1>
+                                    <div className="dad_joke_row">
+                                        <div className="edit_delete">
+                                            <Edit editData={dadJoke} handleSubmit={handleEdit} />
+                                            <button onClick={() => { handleDelete(dadJoke); }}>Delete</button>
+                                        </div>
                                     </div>
                                 </div>
+                                :
+                                <div className="odd">
+                                    <h1>{dadJoke.setup}</h1>
+                                    <h1 className="typing">{dadJoke.punchline}</h1>
+                                    <div className="dad_joke_row odd">
+                                        <div className="edit_delete">
+                                            <Edit editData={dadJoke} handleSubmit={handleEdit} />
+                                            <button onClick={() => { handleDelete(dadJoke); }}>Delete</button>
+                                        </div>
+                                    </div>
+                                </div>
+                    }
                             </div>
                         )
                     })
