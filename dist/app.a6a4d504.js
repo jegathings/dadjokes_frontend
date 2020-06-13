@@ -31133,7 +31133,97 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"src/app.js":[function(require,module,exports) {
+},{"_css_loader":"node_modules/parcel/src/builtins/css-loader.js"}],"node_modules/beauty-stars/dist/index.es.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var Star = function Star(_a) {
+  var selected = _a.selected,
+      activeColor = _a.activeColor,
+      inactiveColor = _a.inactiveColor,
+      size = _a.size;
+  return _react.default.createElement("svg", {
+    style: {
+      color: selected ? activeColor : inactiveColor,
+      fill: selected ? 'rgba(0, 0, 0, 0.02)' : 'rgba(0, 0, 0, 0.04)',
+      display: 'block',
+      height: size,
+      width: size,
+      transition: 'color 0.5s ease-in-out, fill 0.5s ease-in-out'
+    },
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 36 34"
+  }, _react.default.createElement("path", {
+    fill: "currentColor",
+    d: "M19.6859343,0.861782958 L24.8136328,8.05088572 C25.0669318,8.40601432 25.4299179,8.6717536 25.8489524,8.80883508 L34.592052,11.6690221 C35.6704701,12.021812 36.2532905,13.1657829 35.8938178,14.2241526 C35.8056709,14.4836775 35.6647294,14.7229267 35.4795411,14.9273903 L29.901129,21.0864353 C29.5299163,21.4962859 29.3444371,22.0366367 29.3872912,22.5833831 L30.1116131,31.8245163 C30.1987981,32.9368499 29.3506698,33.9079379 28.2172657,33.993502 C27.9437428,34.0141511 27.6687736,33.9809301 27.4085205,33.8957918 L18.6506147,31.0307612 C18.2281197,30.8925477 17.7713439,30.8925477 17.3488489,31.0307612 L8.59094317,33.8957918 C7.51252508,34.2485817 6.34688429,33.6765963 5.98741159,32.6182265 C5.90066055,32.3628116 5.86681029,32.0929542 5.88785051,31.8245163 L6.61217242,22.5833831 C6.65502653,22.0366367 6.46954737,21.4962859 6.09833466,21.0864353 L0.519922484,14.9273903 C-0.235294755,14.0935658 -0.158766688,12.8167745 0.690852706,12.0755971 C0.899189467,11.8938516 1.14297067,11.7555303 1.40741159,11.6690221 L10.1505113,8.80883508 C10.5695458,8.6717536 10.9325319,8.40601432 11.1858308,8.05088572 L16.3135293,0.861782958 C16.9654141,-0.0521682813 18.2488096,-0.274439442 19.1800736,0.365326425 C19.3769294,0.500563797 19.5481352,0.668586713 19.6859343,0.861782958 Z"
+  }));
+};
+
+var COLORS = {
+  inactive: '#121621',
+  active: '#FFED76'
+};
+
+var BeautyStars = function BeautyStars(_a) {
+  var _b = _a.maxStars,
+      maxStars = _b === void 0 ? 5 : _b,
+      _c = _a.value,
+      value = _c === void 0 ? 0 : _c,
+      onChange = _a.onChange,
+      _d = _a.activeColor,
+      activeColor = _d === void 0 ? COLORS.active : _d,
+      _e = _a.inactiveColor,
+      inactiveColor = _e === void 0 ? COLORS.inactive : _e,
+      _f = _a.size,
+      size = _f === void 0 ? 36 : _f,
+      _g = _a.editable,
+      editable = _g === void 0 ? true : _g,
+      _h = _a.gap,
+      gap = _h === void 0 ? 16 : _h,
+      _j = _a.hideInactive,
+      hideInactive = _j === void 0 ? false : _j;
+  return _react.default.createElement("ul", {
+    style: {
+      color: inactiveColor,
+      margin: 0,
+      padding: 0,
+      listStyle: "none",
+      display: "flex"
+    }
+  }, Array(hideInactive ? value : maxStars).fill(null).map(function (_, i) {
+    return i + 1;
+  }).map(function (starNumber) {
+    return _react.default.createElement("li", {
+      title: starNumber + " star",
+      key: starNumber,
+      onClick: function onClick() {
+        if (onChange && editable) onChange(starNumber);
+      },
+      style: {
+        cursor: "pointer",
+        position: "relative",
+        marginRight: starNumber !== maxStars ? gap : 0
+      }
+    }, _react.default.createElement(Star, {
+      selected: starNumber <= value,
+      activeColor: activeColor,
+      inactiveColor: inactiveColor,
+      size: size
+    }));
+  }));
+};
+
+var _default = BeautyStars;
+exports.default = _default;
+},{"react":"node_modules/react/index.js"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
 var _regenerator = _interopRequireDefault(require("@babel/runtime/regenerator"));
@@ -31154,6 +31244,8 @@ var _Edit = _interopRequireDefault(require("./components/Edit.js"));
 
 require("./css/style.css");
 
+var _beautyStars = _interopRequireDefault(require("beauty-stars"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App(props) {
@@ -31171,7 +31263,8 @@ var App = function App(props) {
   var blank = {
     id: '',
     setup: '',
-    punchline: ''
+    punchline: '',
+    rating: ''
   };
 
   var _React$useState5 = _react.default.useState(blank),
@@ -31179,7 +31272,7 @@ var App = function App(props) {
       edit = _React$useState6[0],
       setEdit = _React$useState6[1];
 
-  var baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
+  var baseURL = 'http://localhost:3000/dadjokes';
 
   var getInfo = /*#__PURE__*/function () {
     var _ref = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
@@ -31352,6 +31445,41 @@ var App = function App(props) {
     };
   }();
 
+  var handleRating = /*#__PURE__*/function () {
+    var _ref6 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee6(dadJoke, value) {
+      var response;
+      return _regenerator.default.wrap(function _callee6$(_context6) {
+        while (1) {
+          switch (_context6.prev = _context6.next) {
+            case 0:
+              dadJoke.rating = value.toString();
+              _context6.next = 3;
+              return fetch("".concat(baseURL, "/update/").concat(dadJoke._id), {
+                method: 'PUT',
+                headers: {
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dadJoke)
+              });
+
+            case 3:
+              response = _context6.sent;
+              getInfo();
+              console.log("Handle Rating", dadJoke);
+
+            case 6:
+            case "end":
+              return _context6.stop();
+          }
+        }
+      }, _callee6);
+    }));
+
+    return function handleRating(_x7, _x8) {
+      return _ref6.apply(this, arguments);
+    };
+  }();
+
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "main-content"
   }, /*#__PURE__*/_react.default.createElement("div", {
@@ -31363,13 +31491,19 @@ var App = function App(props) {
     handleSubmit: handleCreate,
     handleRandomJoke: handleRandomJoke
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
+    console.log("Return", dadJoke);
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
     }, index % 2 === 0 ? /*#__PURE__*/_react.default.createElement("div", {
       className: "even"
     }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.setup), /*#__PURE__*/_react.default.createElement("h1", {
       className: "typing"
-    }, dadJoke.punchline), /*#__PURE__*/_react.default.createElement("div", {
+    }, dadJoke.punchline), /*#__PURE__*/_react.default.createElement(_beautyStars.default, {
+      value: dadJoke.rating,
+      onChange: function onChange(value) {
+        return handleRating(dadJoke, value);
+      }
+    }), /*#__PURE__*/_react.default.createElement("div", {
       className: "dad_joke_row"
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "edit_delete"
@@ -31384,7 +31518,12 @@ var App = function App(props) {
       className: "odd"
     }, /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.setup), /*#__PURE__*/_react.default.createElement("h1", {
       className: "typing"
-    }, dadJoke.punchline), /*#__PURE__*/_react.default.createElement("div", {
+    }, dadJoke.punchline), /*#__PURE__*/_react.default.createElement(_beautyStars.default, {
+      value: dadJoke.rating,
+      onChange: function onChange(value) {
+        return handleRating(dadJoke, value);
+      }
+    }), /*#__PURE__*/_react.default.createElement("div", {
       className: "dad_joke_row odd"
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "edit_delete"
@@ -31402,7 +31541,7 @@ var App = function App(props) {
 var target = document.getElementById('app');
 
 _reactDom.default.render( /*#__PURE__*/_react.default.createElement(App, null), target);
-},{"@babel/runtime/regenerator":"node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"node_modules/@babel/runtime/helpers/asyncToGenerator.js","@babel/runtime/helpers/slicedToArray":"node_modules/@babel/runtime/helpers/slicedToArray.js","react":"node_modules/react/index.js","axios":"node_modules/axios/index.js","react-dom":"node_modules/react-dom/index.js","./components/New.js":"src/components/New.js","./components/Edit.js":"src/components/Edit.js","./css/style.css":"src/css/style.css"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"@babel/runtime/regenerator":"node_modules/@babel/runtime/regenerator/index.js","@babel/runtime/helpers/asyncToGenerator":"node_modules/@babel/runtime/helpers/asyncToGenerator.js","@babel/runtime/helpers/slicedToArray":"node_modules/@babel/runtime/helpers/slicedToArray.js","react":"node_modules/react/index.js","axios":"node_modules/axios/index.js","react-dom":"node_modules/react-dom/index.js","./components/New.js":"src/components/New.js","./components/Edit.js":"src/components/Edit.js","./css/style.css":"src/css/style.css","beauty-stars":"node_modules/beauty-stars/dist/index.es.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -31430,7 +31569,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52826" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60075" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

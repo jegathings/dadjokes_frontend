@@ -4,15 +4,16 @@ import ReactDOM from 'react-dom';
 import New from './components/New.js';
 import Edit from './components/Edit.js';
 import './css/style.css';
+import BeautyStars from 'beauty-stars';
 
 const App = (props) => {
     // This version is should be in master branch!!!!
     const [dadJokes, setDadJokes] = React.useState(null);
     const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
-    const blank = { id: '', setup: '', punchline: '' }
+    const blank = { id: '', setup: '', punchline: '' , rating: ''}
     const [edit, setEdit] = React.useState(blank);
 
-    const baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
+    const baseURL = 'http://localhost:3000/dadjokes';
 
     const getInfo = async () => {
         const response = await fetch(`${baseURL}/index`);
@@ -79,6 +80,22 @@ const App = (props) => {
         setEdit(setup, punchline);
     };
 
+    const handleRating = async (dadJoke, value) =>{
+        dadJoke.rating = value.toString();
+        const response = await fetch(
+            `${baseURL}/update/${dadJoke._id}`,
+            {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(dadJoke),
+            }
+        );
+        getInfo();
+
+        console.log("Handle Rating", dadJoke);
+    }
     return (
         <div className="main-content">
         <div className="wrapper">
@@ -92,6 +109,7 @@ const App = (props) => {
             {                
                 dadJokes ?
                     dadJokes.map((dadJoke, index) => {
+                        console.log("Return", dadJoke);
                         return (
                             <div key={dadJoke._id}>
                                 
@@ -100,6 +118,7 @@ const App = (props) => {
                                 <div className="even">
                                     <h1>{dadJoke.setup}</h1>
                                     <h1 className="typing">{dadJoke.punchline}</h1>
+                                    <BeautyStars value={dadJoke.rating} onChange={value => handleRating(dadJoke, value)}/>
                                     <div className="dad_joke_row">
                                         <div className="edit_delete">
                                             <Edit editData={dadJoke} handleSubmit={handleEdit} />
@@ -111,6 +130,7 @@ const App = (props) => {
                                 <div className="odd">
                                     <h1>{dadJoke.setup}</h1>
                                     <h1 className="typing">{dadJoke.punchline}</h1>
+                                    <BeautyStars value={dadJoke.rating} onChange={value => handleRating(dadJoke, value)}/>
                                     <div className="dad_joke_row odd">
                                         <div className="edit_delete">
                                             <Edit editData={dadJoke} handleSubmit={handleEdit} />
