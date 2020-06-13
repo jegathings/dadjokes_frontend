@@ -3,8 +3,6 @@
 
 .main-content {
     margin-left: 2%;
-<<<<<<< HEAD
-=======
 }
 
 body {
@@ -18,6 +16,12 @@ h3 {
     margin-top: 8%;
 }
 
+.setup_row_punchline_row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 hr {
     border: 1px solid black;
 }
@@ -26,7 +30,6 @@ hr {
     color: rgb(255, 255, 255);
     text-shadow: 2px 2px 2px #000;
     text-align: center;
->>>>>>> aa377262dab2c1622d439d6974509728a16ba026
 }
 
 .form {
@@ -66,7 +69,6 @@ hr {
     flex-direction: row;
 }
 
-<<<<<<< HEAD
 .typing {
   color: rgb(0, 0, 0);
   overflow: hidden; /* Ensures the content is not revealed until the animation */
@@ -94,8 +96,6 @@ hr {
     display:inline-block;
 }
 
-=======
->>>>>>> aa377262dab2c1622d439d6974509728a16ba026
 .answer {
     color: rgb(44, 52, 156);
 }
@@ -110,14 +110,6 @@ button, input[type="button"] {
     display: inline-block;
 }
 
-<<<<<<< HEAD
-.edit_delete {
-    display: inline-flex;
-    height: 3%;
-}
-
-=======
->>>>>>> aa377262dab2c1622d439d6974509728a16ba026
 input[type=text] {
     width: 40%;
     padding: 5px 5px;
@@ -130,11 +122,8 @@ input[type=text] {
 
 .wrapper {
     text-align: center;
-<<<<<<< HEAD
     background-color: rgba(0, 0, 0, 0.4);
     margin: 0;
-=======
->>>>>>> aa377262dab2c1622d439d6974509728a16ba026
 }
 .wrapper h1 {
     color: #fff;
@@ -163,11 +152,8 @@ input[type=text] {
 
 
 
-<<<<<<< HEAD
 
 
 
-=======
->>>>>>> aa377262dab2c1622d439d6974509728a16ba026
 
 /*# sourceMappingURL=/app.a6a4d504.css.map */

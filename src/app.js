@@ -94,8 +94,10 @@ const App = (props) => {
                     dadJokes.map((dadJoke, index) => {
                         return (
                             <div key={dadJoke._id}>
-                                <h1 className="typing">{dadJoke.setup}</h1>
-                                <h1>{dadJoke.punchline}</h1>
+                                
+                                <h1>{dadJoke.setup}</h1>
+                                <h1 className="typing">{dadJoke.punchline}</h1>
+                                
                                 <div className="dad_joke_row">
                                     <div className="edit_delete">
                                     <Edit editData={dadJoke} handleSubmit={handleEdit} />

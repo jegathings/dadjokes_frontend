@@ -16,6 +16,12 @@ h3 {
     margin-top: 8%;
 }
 
+.setup_row_punchline_row {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
 hr {
     border: 1px solid black;
 }

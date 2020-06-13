@@ -18,27 +18,22 @@ export default (props) => {
     return (
         <>
         <div className="form">
-            <span>Joke:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+            <div className="setup_row_punchline_row">
+            <span>Setup:</span>
             <input
             type="text"
             name="setup"
             value={dadJokeData.setup}
             onChange={handleChange}
             /><br/>
-            <span>Answer:&nbsp;</span>
+            <span>Punchline:</span>
             <input
-            type="text"
-            name="setup"
-            value={dadJokeData.setup}
-            onChange={handleChange}
-            /><br/>
-            <span>Answer:&nbsp;&nbsp;&nbsp;</span>
-            <input 
             type="text"
             name="punchline"
             value={dadJokeData.punchline}
             onChange={handleChange}
-            /><br/>
+            />
+            </div><br/>
             <button
                 onClick={() =>{
                     props.handleSubmit(dadJokeData);
