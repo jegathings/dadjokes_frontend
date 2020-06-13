@@ -30966,7 +30966,11 @@ var _default = function _default(props) {
     name: "setup",
     value: dadJokeData.setup,
     onChange: handleChange
+<<<<<<< HEAD
   }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("span", null, "Answer:\xA0"), /*#__PURE__*/_react.default.createElement("input", {
+=======
+  }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("span", null, "Answer:\xA0\xA0\xA0"), /*#__PURE__*/_react.default.createElement("input", {
+>>>>>>> aa377262dab2c1622d439d6974509728a16ba026
     type: "text",
     name: "punchline",
     value: dadJokeData.punchline,
@@ -31042,6 +31046,7 @@ var _default = function _default(props) {
     type: "text",
     name: "setup",
     value: dadJokeData.setup,
+<<<<<<< HEAD
     onChange: handleChange
   }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("input", {
     type: "text",
@@ -31049,6 +31054,17 @@ var _default = function _default(props) {
     value: dadJokeData.punchline,
     onChange: handleChange
   }), /*#__PURE__*/_react.default.createElement("br", null), /*#__PURE__*/_react.default.createElement("button", {
+=======
+    onChange: handleChange,
+    placeholder: "Old McDonald Had A Farm"
+  }), /*#__PURE__*/_react.default.createElement("input", {
+    type: "text",
+    name: "punchline",
+    value: dadJokeData.punchline,
+    onChange: handleChange,
+    placeholder: "And On His Farm..."
+  }), /*#__PURE__*/_react.default.createElement("button", {
+>>>>>>> aa377262dab2c1622d439d6974509728a16ba026
     onClick: function onClick() {
       setShowEditOrCreate(!showEditOrCreate);
       props.handleSubmit(dadJokeData);
@@ -31214,7 +31230,7 @@ var App = function App(props) {
   }, []);
 
   var handleCreate = /*#__PURE__*/function () {
-    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(data) {
+    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(setup, punchline) {
       var response;
       return _regenerator.default.wrap(function _callee2$(_context2) {
         while (1) {
@@ -31226,7 +31242,7 @@ var App = function App(props) {
                 headers: {
                   'Content-type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(setup, punchline)
               });
 
             case 2:
@@ -31241,7 +31257,7 @@ var App = function App(props) {
       }, _callee2);
     }));
 
-    return function handleCreate(_x) {
+    return function handleCreate(_x, _x2) {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -31253,7 +31269,23 @@ var App = function App(props) {
       }
     }).then(function (response) {
       handleCreate({
+<<<<<<< HEAD
         setup: response.data.setup,
+=======
+        setup: response.data.setup
+      });
+      getInfo();
+    });
+  };
+
+  var handleRandomPunchline = function handleRandomPunchline() {
+    _axios.default.get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
+      headers: {
+        Accept: 'application/json'
+      }
+    }).then(function (response) {
+      handleCreate({
+>>>>>>> aa377262dab2c1622d439d6974509728a16ba026
         punchline: response.data.punchline
       });
       getInfo();
@@ -31289,7 +31321,7 @@ var App = function App(props) {
       }, _callee3);
     }));
 
-    return function handleEdit(_x2) {
+    return function handleEdit(_x3) {
       return _ref3.apply(this, arguments);
     };
   }();
@@ -31322,18 +31354,18 @@ var App = function App(props) {
       }, _callee4);
     }));
 
-    return function handleDelete(_x3) {
+    return function handleDelete(_x4) {
       return _ref4.apply(this, arguments);
     };
   }();
 
   var handleSelect = /*#__PURE__*/function () {
-    var _ref5 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(joke) {
+    var _ref5 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee5(setup, punchline) {
       return _regenerator.default.wrap(function _callee5$(_context5) {
         while (1) {
           switch (_context5.prev = _context5.next) {
             case 0:
-              setEdit(joke);
+              setEdit(setup, punchline);
 
             case 1:
             case "end":
@@ -31343,7 +31375,7 @@ var App = function App(props) {
       }, _callee5);
     }));
 
-    return function handleSelect(_x4) {
+    return function handleSelect(_x5, _x6) {
       return _ref5.apply(this, arguments);
     };
   }();
@@ -31357,13 +31389,20 @@ var App = function App(props) {
   }, /*#__PURE__*/_react.default.createElement("h3", null, "Add A Dad joke"), /*#__PURE__*/_react.default.createElement(_New.default, {
     newData: blank,
     handleSubmit: handleCreate,
-    handleRandomJoke: handleRandomJoke
+    handleRandomJoke: handleRandomJoke,
+    handleRandomPunchline: handleRandomPunchline
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
+<<<<<<< HEAD
     }, /*#__PURE__*/_react.default.createElement("h1", {
       className: "typing"
     }, dadJoke.setup), /*#__PURE__*/_react.default.createElement("h1", null, dadJoke.punchline), /*#__PURE__*/_react.default.createElement("div", {
+=======
+    }, /*#__PURE__*/_react.default.createElement("h3", null, dadJoke.setup), /*#__PURE__*/_react.default.createElement("h3", {
+      className: "w3-animate-right"
+    }, dadJoke.punchline), /*#__PURE__*/_react.default.createElement("div", {
+>>>>>>> aa377262dab2c1622d439d6974509728a16ba026
       className: "dad_joke_row"
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "edit_delete"
@@ -31409,7 +31448,11 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
+<<<<<<< HEAD
   var ws = new WebSocket(protocol + '://' + hostname + ':' + "46779" + '/');
+=======
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "41403" + '/');
+>>>>>>> aa377262dab2c1622d439d6974509728a16ba026
 
   ws.onmessage = function (event) {
     checkedAssets = {};

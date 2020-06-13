@@ -29,17 +29,19 @@ setShowEditOrCreate(!showEditOrCreate);
             &&
             <div>
             <input
-            type="text"
-            name="setup"
-            value={dadJokeData.setup}
-            onChange={handleChange}
-            /><br/>
+                type="text"
+                name="setup"
+                value={dadJokeData.setup}
+                onChange={handleChange}
+                placeholder="Old McDonald Had A Farm"
+            />
             <input
-            type="text"
-            name="punchline"
-            value={dadJokeData.punchline}
-            onChange={handleChange}
-            /><br/>
+                type="text"
+                name="punchline"
+                value={dadJokeData.punchline}
+                onChange={handleChange}
+                placeholder="And On His Farm..."
+            />
             <button
                 onClick={() =>{
                     setShowEditOrCreate(!showEditOrCreate);

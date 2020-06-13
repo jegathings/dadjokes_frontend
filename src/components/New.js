@@ -28,6 +28,13 @@ export default (props) => {
             <span>Answer:&nbsp;</span>
             <input
             type="text"
+            name="setup"
+            value={dadJokeData.setup}
+            onChange={handleChange}
+            /><br/>
+            <span>Answer:&nbsp;&nbsp;&nbsp;</span>
+            <input 
+            type="text"
             name="punchline"
             value={dadJokeData.punchline}
             onChange={handleChange}

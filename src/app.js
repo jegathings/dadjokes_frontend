@@ -24,18 +24,18 @@ const App = (props) => {
         getInfo()
     }, []);
 
-    const handleCreate = async (data) => {
+    const handleCreate = async (setup, punchline) => {
         const response = await fetch(`${baseURL}/create`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify(data),
+            body: JSON.stringify(setup, punchline),
         });
         getInfo();
     }
 
-    const handleRandomJoke = () => {
+        const handleRandomJoke = () => {
         axios
             .get('https://us-central1-dadsofunny.cloudfunctions.net/DadJokes/random/jokes', {
                 headers: { Accept: 'application/json' }
@@ -75,8 +75,8 @@ const App = (props) => {
         getInfo();
     }
 
-    const handleSelect = async (joke) => {
-        setEdit(joke);
+    const handleSelect = async (setup, punchline) =>{
+        setEdit(setup, punchline);
     };
 
     return (
