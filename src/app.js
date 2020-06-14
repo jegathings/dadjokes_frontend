@@ -10,10 +10,10 @@ const App = (props) => {
     // This version is should be in master branch!!!!
     const [dadJokes, setDadJokes] = React.useState(null);
     const [showEditOrCreate, setShowEditOrCreate] = React.useState(false);
-    const blank = { id: '', setup: '', punchline: '' , rating: ''}
+    const blank = { id: '', setup: '', punchline: ''}
     const [edit, setEdit] = React.useState(blank);
 
-    const baseURL = 'https://not-just-for-dads-jokes.herokuapp.com/dadjokes';
+    const baseURL = 'http://localhost:3000/dadjokes';
 
     const getInfo = async () => {
         const response = await fetch(`${baseURL}/index`);
@@ -25,13 +25,13 @@ const App = (props) => {
         getInfo()
     }, []);
 
-    const handleCreate = async (setup, punchline) => {
+    const handleCreate = async (data) => {
         const response = await fetch(`${baseURL}/create`, {
             method: 'POST',
             headers: {
                 'Content-type': 'application/json',
             },
-            body: JSON.stringify(setup, punchline),
+            body: JSON.stringify(data),
         });
         getInfo();
     }
@@ -93,9 +93,8 @@ const App = (props) => {
             }
         );
         getInfo();
-
-        console.log("Handle Rating", dadJoke);
     }
+
     return (
         <div className="main-content">
         <div className="wrapper">
@@ -109,7 +108,6 @@ const App = (props) => {
             {                
                 dadJokes ?
                     dadJokes.map((dadJoke, index) => {
-                        console.log("Return", dadJoke);
                         return (
                             <div key={dadJoke._id}>
                                 

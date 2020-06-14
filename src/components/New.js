@@ -11,7 +11,6 @@ export default (props) => {
     }, [props.newData]);
 
     const handleChange = (event) =>{
-        console.log("HandleChange Event", event);
         setDadJokeData({ ...dadJokeData, [event.target.name]: event.target.value})
     }
 

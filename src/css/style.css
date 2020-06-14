@@ -6,11 +6,12 @@
 }
 
 body {
-    background-color: rgb(201, 204, 247);
+    background-color: #FAB5A6;
 }
 
 h3 {
     font-family: 'Balsamiq Sans', cursive;
+    color: #853417;
 }
 .add-a-joke {
     margin-top: 8%;
@@ -38,7 +39,8 @@ hr {
 }
 
 body {
-    background-color: rgb(242, 242, 247);
+    background-color: #FAB5A6;
+    color: #853417;
 }
 
 h3 {
@@ -70,14 +72,14 @@ hr {
 }
 
 .odd{
-    background-color:rgb(110, 110, 112);
+    background-color: #fbb251;
 }
 .even{
-    background-color:rgb(198, 198, 204);
+    background-color:#3dc34c;
 }
 
 .typing {
-  color: rgb(0, 0, 0);
+  color: #853417;
   overflow: hidden; /* Ensures the content is not revealed until the animation */
   /* border-right: .15em solid rgb(70, 69, 69); The typwriter cursor */
   white-space: nowrap; /* Keeps the content on a single line */
@@ -130,20 +132,20 @@ input[type=text] {
 
 .wrapper {
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color:rgb(200, 63, 63);
     margin: 0;
 }
 .wrapper h1 {
-    color: #fff;
+    color: purple;
     font-size: 102px;
     font-family: 'Acme', sans-serif;
     text-transform: uppercase;
     font-weight: 900;
-    background: linear-gradient(to right, #313749 10%, rgb(53, 46, 46) 50%, #081113 60%);
+    background: linear-gradient(to right, #493131 10%, rgb(238, 15, 15) 50%, #130808 60%);
     background-size: auto auto;
     background-clip: border-box;
     background-size: 200% auto;
-    color: #fff;
+    color: purple;
     background-clip: text;
     -text-fill-color: transparent;
     -webkit-background-clip: text;
