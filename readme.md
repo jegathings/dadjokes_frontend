@@ -1,5 +1,7 @@
 # Dad Joke Frontend
 
+## Tech Stack
+
 ## Directions
 
 1. Copy clone url
