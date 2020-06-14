@@ -1,7 +1,12 @@
 # Dad Joke Frontend
 
-## Tech Stack
+## Front End Tech Stack
 
+- Parcel
+- React
+- Axios
+- Beauty Stars
+ 
 ## Directions
 
 1. Copy clone url
