@@ -30955,7 +30955,6 @@ var _default = function _default(props) {
   }, [props.newData]);
 
   var handleChange = function handleChange(event) {
-    console.log("HandleChange Event", event);
     setDadJokeData(_objectSpread(_objectSpread({}, dadJokeData), {}, (0, _defineProperty2.default)({}, event.target.name, event.target.value)));
   };
 
@@ -31263,8 +31262,7 @@ var App = function App(props) {
   var blank = {
     id: '',
     setup: '',
-    punchline: '',
-    rating: ''
+    punchline: ''
   };
 
   var _React$useState5 = _react.default.useState(blank),
@@ -31311,7 +31309,7 @@ var App = function App(props) {
   }, []);
 
   var handleCreate = /*#__PURE__*/function () {
-    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(setup, punchline) {
+    var _ref2 = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee2(data) {
       var response;
       return _regenerator.default.wrap(function _callee2$(_context2) {
         while (1) {
@@ -31323,7 +31321,7 @@ var App = function App(props) {
                 headers: {
                   'Content-type': 'application/json'
                 },
-                body: JSON.stringify(setup, punchline)
+                body: JSON.stringify(data)
               });
 
             case 2:
@@ -31338,7 +31336,7 @@ var App = function App(props) {
       }, _callee2);
     }));
 
-    return function handleCreate(_x, _x2) {
+    return function handleCreate(_x) {
       return _ref2.apply(this, arguments);
     };
   }();
@@ -31386,7 +31384,7 @@ var App = function App(props) {
       }, _callee3);
     }));
 
-    return function handleEdit(_x3) {
+    return function handleEdit(_x2) {
       return _ref3.apply(this, arguments);
     };
   }();
@@ -31419,7 +31417,7 @@ var App = function App(props) {
       }, _callee4);
     }));
 
-    return function handleDelete(_x4) {
+    return function handleDelete(_x3) {
       return _ref4.apply(this, arguments);
     };
   }();
@@ -31440,7 +31438,7 @@ var App = function App(props) {
       }, _callee5);
     }));
 
-    return function handleSelect(_x5, _x6) {
+    return function handleSelect(_x4, _x5) {
       return _ref5.apply(this, arguments);
     };
   }();
@@ -31465,9 +31463,8 @@ var App = function App(props) {
             case 3:
               response = _context6.sent;
               getInfo();
-              console.log("Handle Rating", dadJoke);
 
-            case 6:
+            case 5:
             case "end":
               return _context6.stop();
           }
@@ -31475,7 +31472,7 @@ var App = function App(props) {
       }, _callee6);
     }));
 
-    return function handleRating(_x7, _x8) {
+    return function handleRating(_x6, _x7) {
       return _ref6.apply(this, arguments);
     };
   }();
@@ -31491,7 +31488,6 @@ var App = function App(props) {
     handleSubmit: handleCreate,
     handleRandomJoke: handleRandomJoke
   })), /*#__PURE__*/_react.default.createElement("hr", null), dadJokes ? dadJokes.map(function (dadJoke, index) {
-    console.log("Return", dadJoke);
     return /*#__PURE__*/_react.default.createElement("div", {
       key: dadJoke._id
     }, index % 2 === 0 ? /*#__PURE__*/_react.default.createElement("div", {
@@ -31569,7 +31565,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60075" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62450" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
