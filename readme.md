@@ -1,4 +1,18 @@
-# Dad Joke Frontend
+# Not Just Dad Jokes Frontend
+
+## Front End Tech Stack
+
+- Parcel
+- React
+- Axios
+- Beauty Stars
+ 
+## Phase 2 (A.K.A Unsolved Problems)
+
+- Improve UI.  Make it more zany.
+- Add users
+- Authorization
+- Average ratings 
 
 ## Directions
 
